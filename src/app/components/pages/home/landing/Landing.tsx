@@ -1,5 +1,6 @@
 import Container from "@/app/components/ui/container/Container";
 import Image from "next/image";
+import Link from "next/link";
 
 export default function Landing() {
   return (
@@ -36,13 +37,15 @@ export default function Landing() {
               encontrará os melhores profissionais com o nosso atendimento de
               maior qualidade.
             </p>
-            <button
-              type="button"
-              className="font-poppins text-Copper-200 px-3 py-1 rounded border-2 border-Copper-200 max-w-[200px] font-medium text-lg mt-10"
-              aria-label="Agendar horário na barbearia"
-            >
-              Agendar Horário
-            </button>
+            <Link href="/agendar-horario">
+              <button
+                type="button"
+                className="font-poppins text-Copper-200 px-3 py-1 rounded border-2 border-Copper-200 max-w-[200px] font-medium text-lg mt-10"
+                aria-label="Agendar horário na barbearia"
+              >
+                Agendar Horário
+              </button>
+            </Link>
           </header>
         </div>
       </Container>

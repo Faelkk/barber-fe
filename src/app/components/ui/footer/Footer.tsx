@@ -1,3 +1,4 @@
+import Link from "next/link";
 import FacebookIcon from "../icons/Facebook";
 import InstagramIcon from "../icons/Instagram";
 import LinkedinIcon from "../icons/Linkedin";
@@ -38,10 +39,19 @@ export default function Footer() {
             Informações
           </h2>
           <ul className="font-poppins font-medium text-cold-gray-700 text-lg flex flex-col gap-4 mt-5">
-            <li className="">Serviços</li>
-            <li className="">Unidades</li>
-            <li className="">Sobre nós</li>
-            <li>Meus horários</li>
+            <li className="">
+              <Link href="/servicos">Serviços</Link>
+            </li>
+            <li className="">
+              <Link href="/unidades">Unidades</Link>
+            </li>
+            <li className="">
+              <Link href="#sobre-nos">Sobre Nós</Link>
+            </li>
+            <li>
+              {" "}
+              <Link href="/meus-horarios">Meus Horários</Link>
+            </li>
           </ul>
         </section>
         <section className="col-span-full font-poppins font-medium text-cold-gray-900 uppercase">

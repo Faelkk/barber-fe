@@ -19,10 +19,10 @@ export default function Unidades() {
         </p>
 
         <Button
-          href="/servicos"
+          href="/unidades"
           borderColor="border-cold-gray-900"
           textColor="text-cold-gray-900"
-          className="mt-16"
+          className="mt-16 flex justify-center"
           ariaLabel="Ver unidades disponíveis"
         >
           Ver unidades

@@ -20,16 +20,15 @@ export default function Button({
   ariaLabel,
 }: ButtonProps) {
   return (
-    <button className={className} aria-label={ariaLabel}>
-      <Link
-        href={href}
+    <Link className={className} aria-label={ariaLabel} href={href}>
+      <button
         className={cn(
           `uppercase font-poppins font-medium text-lg border-2 rounded px-3 py-1 
           ${textColor} ${borderColor} md:hover:scale-105 md:transition-transform`
         )}
       >
         {children}
-      </Link>
-    </button>
+      </button>
+    </Link>
   );
 }

@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "../container/Container";
-import HeaderMenuMobile from "./HeaderMenuMobile";
+import HeaderMenuMobile from "./Header-menu-mobile";
 
 export default function Header() {
   return (
@@ -10,7 +10,7 @@ export default function Header() {
           className="font-merriweather font-bold text-sm mini:block mini:text-base pp:text-2xl text-Seashell-950"
           aria-label="Barber Agenda"
         >
-          barberagender
+          <Link href="/">barberagender</Link>
         </h1>
         <nav aria-label="Main Navigation">
           <ul className="hidden md:flex gap-5">

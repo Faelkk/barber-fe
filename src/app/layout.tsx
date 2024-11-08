@@ -11,7 +11,7 @@ export default async function RootLayout({
       <body
         className={`${typePrimary.variable} ${typeSecond.variable} bg-Seashell-100`}
       >
-        <div>{children}</div>
+        <div className="">{children}</div>
       </body>
     </html>
   );

@@ -8,8 +8,10 @@ export default function Container({
   className?: string;
 }) {
   return (
-    <main className={cn("flex w-full items-center justify-center ", className)}>
+    <section
+      className={cn("flex w-full items-center justify-center ", className)}
+    >
       {children}
-    </main>
+    </section>
   );
 }

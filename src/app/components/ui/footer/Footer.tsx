@@ -13,10 +13,10 @@ export default function Footer() {
           barberagender
         </h2>
         <section>
-          <h2 className="font-poppins font-medium text-cold-gray-900 text-2xl uppercase">
+          <h2 className="font-poppins font-medium text-cold-gray-900 mini:text-2xl uppercase">
             Contato
           </h2>
-          <ul className="font-poppins font-medium text-cold-gray-700 text-lg flex flex-col gap-4 mt-5">
+          <ul className="font-poppins font-medium text-cold-gray-700 mini:text-lg flex flex-col gap-4 mt-5">
             <li className="">+51 9999-99999</li>
             <li className="relative after:content-[''] after:block after:w-full after:max-w-[360px] after:h-[2px] after:bg-gray-300 after:mt-4">
               Contato-barber@gmail.com
@@ -35,10 +35,10 @@ export default function Footer() {
           </div>
         </section>
         <section>
-          <h2 className="font-poppins font-medium text-cold-gray-900 text-2xl uppercase">
+          <h2 className="font-poppins font-medium text-cold-gray-900 mini:text-2xl uppercase">
             Informações
           </h2>
-          <ul className="font-poppins font-medium text-cold-gray-700 text-lg flex flex-col gap-4 mt-5">
+          <ul className="font-poppins font-medium text-cold-gray-700 mini:text-lg flex flex-col gap-4 mt-5">
             <li className="">
               <Link href="/servicos">Serviços</Link>
             </li>

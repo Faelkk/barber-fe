@@ -1,4 +1,4 @@
-import ServicesCardContainer from "./ServicesCardContainer";
+import ServicesCardContainer from "./Services-card-container";
 import Button from "@/app/components/ui/button/Button";
 
 export default function Services() {

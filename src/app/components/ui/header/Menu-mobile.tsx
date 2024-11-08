@@ -8,6 +8,7 @@ import {
 } from "@/components/ui/dialog";
 
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export default function MenuMobile() {
   return (
@@ -31,28 +32,30 @@ export default function MenuMobile() {
           </header>
           <ul className="flex flex-col justify-center flex-1   text-left gap-2 font-poppins pp:text-xl font-medium text-cold-gray-900">
             <li>
-              <span>Home</span>
+              <Link href="/">Home</Link>
             </li>
             <li>
-              <span>Unidades</span>
+              <Link href="/unidades">Unidades</Link>
             </li>
             <li>
-              <span>Sobre nós</span>
+              <Link href="/">Sobre nós</Link>
             </li>
             <li>
-              <span>Meus horarios</span>
+              <Link href="meus-horarios">Meus horarios</Link>
             </li>
             <li>
-              <span>Serviços</span>
+              <Link href="servicos">Serviços</Link>
             </li>
             <li className="flex items-center">
               <span>Encerrar sessão</span>
             </li>
           </ul>
 
-          <button className="font-poppins text-Copper-800 font-medium border-2 border-Copper-800 rounded  px-1 pp:px-3 py-1 w-full medium:w-full">
-            Agendar Horario
-          </button>
+          <Link href="/agendar-horario">
+            <button className="font-poppins text-Copper-800 font-medium border-2 border-Copper-800 rounded  px-1 pp:px-3 py-1 w-full medium:w-full">
+              Agendar Horario
+            </button>
+          </Link>
         </DialogHeader>
       </DialogContent>
     </Dialog>

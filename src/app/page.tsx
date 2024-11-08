@@ -1,4 +1,4 @@
-import AboutUs from "./components/pages/home/about-us/about-us";
+import AboutUs from "./components/pages/home/about-us/About-us";
 import Landing from "./components/pages/home/landing/Landing";
 import Services from "./components/pages/home/services/Services";
 import Unidades from "./components/pages/home/unidades/Unidades";

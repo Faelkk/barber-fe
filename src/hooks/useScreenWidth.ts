@@ -3,18 +3,24 @@
 import { useEffect, useState } from "react";
 
 export default function useScreenWidth() {
-  const [screenWidth, setScreenWidth] = useState(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<number | null>(null);
 
   const handleSizeScreenChange = () => {
     setScreenWidth(window.innerWidth);
   };
 
   useEffect(() => {
-    window.addEventListener("resize", handleSizeScreenChange);
+    if (typeof window !== "undefined") {
+      // Set initial width on mount
+      setScreenWidth(window.innerWidth);
 
-    return () => {
-      window.removeEventListener("resize", handleSizeScreenChange);
-    };
+      // Add resize listener
+      window.addEventListener("resize", handleSizeScreenChange);
+
+      return () => {
+        window.removeEventListener("resize", handleSizeScreenChange);
+      };
+    }
   }, []);
 
   return { screenWidth };

@@ -9,7 +9,7 @@ export default function CriarContaContainer() {
       </h2>
       <span className="font-poppins text-lg text-Seashell-900 mt-4 block max-w-[90%] text-center">
         Já tem uma conta?{" "}
-        <Link href="/">
+        <Link href="/entrar">
           {" "}
           <span className="text-Seashell-950 font-medium">Fazer login</span>
         </Link>

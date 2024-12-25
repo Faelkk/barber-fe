@@ -52,6 +52,10 @@ export default function Footer() {
               {" "}
               <Link href="/meus-horarios">Meus Horários</Link>
             </li>
+            <li>
+              {" "}
+              <Link href="/agendar-horario">Agendar horario</Link>
+            </li>
           </ul>
         </section>
         <section className="col-span-full font-poppins font-medium text-cold-gray-900 uppercase">

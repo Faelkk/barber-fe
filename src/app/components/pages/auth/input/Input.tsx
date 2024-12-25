@@ -1,22 +1,39 @@
 import { cn } from "@/functions/cn";
+import { ComponentProps, forwardRef } from "react";
 
-export default function Input({
-  type,
-  placeholder,
-  className,
-}: {
-  type: string;
-  placeholder: string;
-  className?: string;
-}) {
-  return (
-    <input
-      type={type}
-      placeholder={placeholder}
-      className={cn(
-        "p-3 rounded border border-[#bbbb] placeholder:font-poppins placeholder:text-Seashell-950 w-full md:min-w-[450px] max-w-[450px]",
-        className
-      )}
-    />
-  );
+interface InputProps extends ComponentProps<"input"> {
+  name: string;
+  error?: string;
 }
+
+// Corrigido o uso do `forwardRef` e adequação do tipo do componente.
+const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
+  { placeholder, className, disabled, id, name, error, ...props },
+  ref
+) {
+  return (
+    <div className="relative">
+      <input
+        ref={ref}
+        name={name}
+        id={id}
+        {...props}
+        placeholder={placeholder}
+        disabled={disabled}
+        className={cn(
+          " w-[12rem] 3pp:w-[16rem] pp:w-[22.75rem] md:w-[28.75rem] text-black-0 bg-gray-0 rounded-[3px] p-3 font-roboto placeholder:text-black-0 focus:bg-gray-300  focus:border-black-600 transition-colors mt-[16px] border border-[#bbbb] placeholder:font-poppins placeholder:text-Seashell-950",
+          error && "border-red-500 focus:border-red-500",
+          className
+        )}
+      />
+
+      {error && (
+        <div className="flex gap-2 items-center mt-2 text-red-500">
+          <span className=" text-xs">{error}</span>
+        </div>
+      )}
+    </div>
+  );
+});
+
+export default Input;

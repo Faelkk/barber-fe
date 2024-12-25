@@ -1,6 +1,7 @@
 import Container from "@/app/components/ui/container/Container";
-import ServicosContainer from "../servicos-container/Servicos-container";
+
 import Button from "@/app/components/ui/button/Button";
+import ServicosContainer from "../components/servicos-container/Servicos-container";
 
 export default function ServicosSection() {
   return (

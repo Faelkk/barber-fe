@@ -1,12 +1,21 @@
-import Button from "@/app/components/ui/button/Button";
-import UnidadesHeader from "../unidades-header/Unidades-header";
-import UnidadesList from "../unidades-list/Unidades-list";
+"use client";
 
-export default function UnidadesSection() {
+import Button from "@/app/components/ui/button/Button";
+import UnidadesHeader from "../components/unidades-header/Unidades-header";
+import UnidadesList from "../components/unidades-list/Unidades-list";
+import { useUnidadesSection } from "./use-unidades-section";
+import { Unit } from "@/actions/units/get-units";
+
+export default function UnidadesSection({ units }: { units: Unit[] | null }) {
+  const { handleSearchChange, searchQuery } = useUnidadesSection();
+
   return (
     <main className="flex flex-col justify-center items-center mt-[120px]">
-      <UnidadesHeader />
-      <UnidadesList />
+      <UnidadesHeader
+        searchQuery={searchQuery}
+        handleSearchChange={handleSearchChange}
+      />
+      <UnidadesList searchQuery={searchQuery} units={units} />
       <Button
         href="/agendar-horario"
         borderColor="border-cold-gray-900"

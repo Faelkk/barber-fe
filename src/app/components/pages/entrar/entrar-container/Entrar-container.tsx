@@ -1,3 +1,4 @@
+import Link from "next/link";
 import EntrarForm from "../entrar-form/Entrar-form";
 
 export default function EntrarContainer() {
@@ -8,7 +9,9 @@ export default function EntrarContainer() {
       </h2>
       <span className="font-poppins text-lg text-Seashell-900 mt-4 block max-w-[90%] text-center">
         Não tem uma conta?{" "}
-        <span className="text-Seashell-950 font-medium">Criar uma</span>
+        <Link className="text-Seashell-950 font-medium" href="/criar-conta">
+          Criar uma
+        </Link>
       </span>
       <EntrarForm />
     </section>

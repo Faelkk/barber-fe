@@ -1,3 +1,7 @@
+"use client";
+
+import { User } from "@/actions/auth/get-user";
+import { onLogout } from "@/actions/auth/logout";
 import {
   Dialog,
   DialogClose,
@@ -10,7 +14,13 @@ import {
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 
-export default function MenuMobile() {
+export default function MenuMobile({
+  user,
+  isUserTrue,
+}: {
+  user: User | null;
+  isUserTrue: boolean;
+}) {
   return (
     <Dialog>
       <DialogTrigger className="flex  gap-2">
@@ -19,7 +29,7 @@ export default function MenuMobile() {
         </h2>
         <HamburgerMenuIcon fill="#3D3D3D" width={24} height={24} />
       </DialogTrigger>
-      <DialogContent className="flex flex-col left-0 top-0 translate-y-0 translate-x-0 w-full  max-w-full  h-full">
+      <DialogContent className="flex flex-col left-0 top-0 translate-y-0 translate-x-0 w-full  max-w-full  h-[50%]">
         <DialogHeader className="flex h-full justify-center my-4">
           <DialogTitle className="hidden">Menu Mobile Header</DialogTitle>
           <header className="flex justify-end mini:justify-between w-full">
@@ -41,14 +51,20 @@ export default function MenuMobile() {
               <Link href="/">Sobre nós</Link>
             </li>
             <li>
-              <Link href="meus-horarios">Meus horarios</Link>
+              <Link href="/meus-horarios">Meus horarios</Link>
             </li>
             <li>
-              <Link href="servicos">Serviços</Link>
+              <Link href="/servicos">Serviços</Link>
             </li>
-            <li className="flex items-center">
-              <span>Encerrar sessão</span>
-            </li>
+            {user && isUserTrue ? (
+              <li className="flex items-center" onClick={onLogout}>
+                <span>Encerrar sessão</span>
+              </li>
+            ) : (
+              <li>
+                <Link href="/entrar">Entrar</Link>
+              </li>
+            )}
           </ul>
 
           <Link href="/agendar-horario">

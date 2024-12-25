@@ -2,13 +2,22 @@
 
 import useScreenWidth from "@/hooks/useScreenWidth";
 import MenuMobile from "./Menu-mobile";
+import { User } from "@/actions/auth/get-user";
 
-export default function HeaderMenuMobile() {
+export default function HeaderMenuMobile({
+  user,
+  isUserTrue,
+}: {
+  user: User | null;
+  isUserTrue: boolean;
+}) {
   const { screenWidth } = useScreenWidth();
 
-  return screenWidth < 768 ? (
+  if (screenWidth === null) return null;
+
+  return (
     <>
-      <MenuMobile />
+      {screenWidth < 1024 && <MenuMobile user={user} isUserTrue={isUserTrue} />}
     </>
-  ) : null;
+  );
 }

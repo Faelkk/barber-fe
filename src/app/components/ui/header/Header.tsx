@@ -1,8 +1,12 @@
 import Link from "next/link";
 import Container from "../container/Container";
 import HeaderMenuMobile from "./Header-menu-mobile";
+import getUser from "@/actions/auth/get-user";
+import DropdownAccountHeader from "./Dropdown-account-header";
 
-export default function Header() {
+export default async function Header() {
+  const { data, ok } = await getUser();
+
   return (
     <Container className="bg-Seashell-50 border-b-4 border-Copper-300">
       <header className="flex justify-between items-center w-[95%] py-[1.875rem]">
@@ -13,12 +17,9 @@ export default function Header() {
           <Link href="/">barberagender</Link>
         </h1>
         <nav aria-label="Main Navigation">
-          <ul className="hidden md:flex gap-5">
+          <ul className="hidden lg:flex gap-5">
             <li>
-              <Link
-                href="/home"
-                className="font-poppins text-lg text-Seashell-950"
-              >
+              <Link href="/" className="font-poppins text-lg text-Seashell-950">
                 Home
               </Link>
             </li>
@@ -40,6 +41,26 @@ export default function Header() {
             </li>
             <li>
               <Link
+                href="/meus-horarios"
+                className="font-poppins text-lg text-Seashell-950"
+              >
+                Meus horarios
+              </Link>
+            </li>
+            {data && ok ? (
+              <DropdownAccountHeader />
+            ) : (
+              <li className="font-poppins text-lg text-Seashell-950">
+                <Link
+                  href="/entrar"
+                  className="font-poppins text-lg text-Seashell-950"
+                >
+                  Entrar
+                </Link>
+              </li>
+            )}
+            <li>
+              <Link
                 href="/agendar-horario"
                 className="font-poppins text-lg text-Copper-800 font-medium px-4 py-1 border-2 border-Copper-800 rounded"
               >
@@ -47,7 +68,7 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <HeaderMenuMobile />
+          <HeaderMenuMobile user={data} isUserTrue={ok} />
         </nav>
       </header>
     </Container>

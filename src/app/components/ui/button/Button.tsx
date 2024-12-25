@@ -23,7 +23,7 @@ export default function Button({
     <Link className={className} aria-label={ariaLabel} href={href}>
       <button
         className={cn(
-          `uppercase font-poppins font-medium text-lg border-2 rounded px-3 py-1 
+          `uppercase font-poppins font-medium text-lg border-2 rounded px-3 py-1 w-full 
           ${textColor} ${borderColor} md:hover:scale-105 md:transition-transform`
         )}
       >

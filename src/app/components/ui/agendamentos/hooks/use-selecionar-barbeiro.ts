@@ -1,28 +1,29 @@
 "use client";
-import { Auth } from "@/actions/units/get-unit-by-id";
+import { Barber } from "@/actions/appointments/get-appointment-by-id";
 import { useState } from "react";
 
 interface UseSelecionarBarbeiroProps {
   initialIsEditing?: boolean;
-  initialSelectedBarber?: Auth | null;
+  initialSelectedBarber?: Barber | null;
 }
 
 export function useSelecionarBarbeiro({
   initialIsEditing = false,
   initialSelectedBarber = null,
 }: UseSelecionarBarbeiroProps) {
-  const [isEditing, setIsEditing] = useState<true | false>(initialIsEditing);
-  const [selectedBarber, setSelectedBarber] = useState<Auth | null>(
+  const [isEditing, setIsEditing] = useState<boolean>(initialIsEditing);
+  const [selectedBarber, setSelectedBarber] = useState<Barber | null>(
     initialSelectedBarber
   );
 
-  const handleSelectBarber = (barber: Auth) => {
+  const handleSelectBarber = (barber: Barber) => {
     setSelectedBarber(barber);
     setIsEditing(true);
   };
 
   const handleEditBarber = () => {
     setIsEditing(false);
+    setSelectedBarber(null);
   };
 
   return { isEditing, selectedBarber, handleEditBarber, handleSelectBarber };

@@ -16,8 +16,9 @@ export default function Button({
     <button
       disabled={disabled}
       className={cn(
-        "bg-Sandstone-700 rounded-lg font-poppins text-lg text-cold-gray-50 py-3 w-full max-w-[450px] md:min-w-[450px]",
-        className
+        "bg-Sandstone-500 rounded-lg font-poppins text-lg text-cold-gray-50 py-3 w-full max-w-[450px] md:min-w-[450px]",
+        className,
+        disabled ? "bg-Sandstone-300" : ""
       )}
       aria-label={ariaLabel}
     >

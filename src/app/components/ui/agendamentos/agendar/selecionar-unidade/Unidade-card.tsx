@@ -13,7 +13,7 @@ export default function UnidadeCard({ onSelect, unit }: UnidadeCardProps) {
       onClick={() => onSelect(unit)}
     >
       <Image
-        src="/defaults/barber-unity.jpg"
+        src={`${unit.avatar ? unit.avatar : "/defaults/barber-unity.jpg"}`}
         width={3000}
         height={300}
         alt={`Foto ilustrativa do ambiente da barbearia em ${unit.address.fullAddress}`}

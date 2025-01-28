@@ -4,6 +4,7 @@ import criarConta from "@/actions/auth/criar-conta";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 
 export const criarContaSchema = z.object({
   email: z.string().email("Invalid email address"),
@@ -15,6 +16,7 @@ export const criarContaSchema = z.object({
 export type FormData = z.infer<typeof criarContaSchema>;
 
 export default function useCriarFormController() {
+  const [pending, setPending] = useState(false);
   const router = useRouter();
   const {
     register,
@@ -27,6 +29,7 @@ export default function useCriarFormController() {
 
   const handleSubmit = HookFormSubmit(async (dataSignup) => {
     try {
+      setPending(true);
       const newDataSignUp = {
         ...dataSignup,
         role: "Client",
@@ -42,9 +45,10 @@ export default function useCriarFormController() {
       } else {
         throw new Error(error);
       }
-    } catch (err: unknown) {
-      console.log(err);
+    } catch {
       toast.error("Erro ao cadastrar conta");
+    } finally {
+      setPending(false);
     }
   });
 
@@ -52,5 +56,5 @@ export default function useCriarFormController() {
   const isFormEmpty =
     !values.email || !values.password || !values.name || !values.phoneNumber;
 
-  return { errors, handleSubmit, register, isFormEmpty };
+  return { errors, handleSubmit, register, isFormEmpty, pending };
 }

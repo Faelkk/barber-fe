@@ -7,7 +7,7 @@ export default function UnidadesByIdService({
 }: {
   servicos: GlobalService[];
 }) {
-  console.log(servicos, "container");
+  console.log(servicos);
 
   return (
     <div className="flex flex-col items-center max-w-full mt-20 px-4">
@@ -18,8 +18,8 @@ export default function UnidadesByIdService({
         Confira nossos serviços disponiveis
       </h2>
       <p className="font-poppins text-cold-gray-900 max-w-[750px] mt-5 md:text-lg text-center">
-        Atualmente, possuímos mais de 500 unidades espalhadas pelo Brasil em 8
-        estados brasileiros: SP, RJ, SC, PR, RS, MG, MS, BA.
+        Todos os nossos serviços são especializados e cuidadosamente preparados
+        para oferecer a cada cliente o atendimento de qualidade que você merece
       </p>
 
       <div className="flex flex-col items-center w-full">

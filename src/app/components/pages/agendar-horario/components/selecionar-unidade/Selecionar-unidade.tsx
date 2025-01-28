@@ -5,9 +5,8 @@ import SelecionarUnidadeComponent from "../../../../ui/agendamentos/agendar/sele
 import EditSelecionarUnidadeComponent from "../../../../ui/agendamentos/edit/selecionar-unidade/Selecionar-unidade";
 import { AgendarHorarioState } from "../../agendar-horario-contaiener/use-agendar-horario-container";
 
-import { Dispatch, SetStateAction, useEffect, useState } from "react";
-import getUnits, { Unit } from "@/actions/units/get-units";
-import Loading from "@/app/loading";
+import { Dispatch, SetStateAction } from "react";
+import { Unit } from "@/actions/units/get-units";
 
 interface SelecionarUnidadeProps {
   onSelect: (value: AgendarHorarioState["unit"]) => void;
@@ -18,10 +17,6 @@ export default function SelecionarUnidade({
   onSelect,
   setSelectedUnit,
 }: SelecionarUnidadeProps) {
-  const [units, setUnits] = useState<Unit[] | null>(null);
-  const [isLoading, setIsLoading] = useState(false);
-  const [error, setIsError] = useState(false);
-
   const { isEditing, selectedUnit, handleEditUnit, handleSelectUnit } =
     useSelecionarUnidade({
       initialIsEditing: false,
@@ -39,40 +34,16 @@ export default function SelecionarUnidade({
     handleEditUnit();
   };
 
-  useEffect(() => {
-    const fetchUnits = async () => {
-      try {
-        setIsLoading(true);
-        const { data, error, ok } = await getUnits();
-
-        if (data && ok && !error) {
-          setUnits(data);
-          setIsLoading(false);
-        } else {
-          throw new Error("erro ao pegar unidade");
-        }
-      } catch {
-        setIsError(true);
-        setIsLoading(false);
-      }
-    };
-
-    fetchUnits();
-  }, []);
-
-  if (isLoading) return <Loading />;
-
-  if (units && !error)
-    return (
-      <>
-        {isEditing && selectedUnit ? (
-          <EditSelecionarUnidadeComponent
-            onEdit={handleEdit}
-            selectedUnit={selectedUnit}
-          />
-        ) : (
-          <SelecionarUnidadeComponent onSelect={handleSelect} units={units} />
-        )}
-      </>
-    );
+  return (
+    <>
+      {isEditing && selectedUnit ? (
+        <EditSelecionarUnidadeComponent
+          onEdit={handleEdit}
+          selectedUnit={selectedUnit}
+        />
+      ) : (
+        <SelecionarUnidadeComponent onSelect={handleSelect} />
+      )}
+    </>
+  );
 }

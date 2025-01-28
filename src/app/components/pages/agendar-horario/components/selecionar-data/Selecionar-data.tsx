@@ -11,25 +11,26 @@ interface SelecionarUnidadeProps {
   onSelect: (value: AgendarHorarioState["date"]) => void;
 }
 
-export default function SelecionarData({ onSelect }: SelecionarUnidadeProps) {
+export default function SelecionarData({
+  onSelect,
+  selectedUnit,
+}: SelecionarUnidadeProps) {
   const {
+    selectedMonthAndDay,
+    selectedMonthAndDayUtc,
+    dates,
     isEditing,
     selectedDate,
     handleEditDate,
-    handleSelectDate,
+    handleSelect,
     handleSelectedMonthAndDay,
-    handleSelectHour,
+    setSelectedMonthAndDayUtc,
+    setSelectedDate,
   } = useSelecionarData({
     initialIsEditing: false,
     initialSelectedDate: null,
+    onSelect,
   });
-
-  const handleSelect = (service: string) => {
-    handleSelectDate();
-    console.log(service, "teste");
-
-    onSelect(service);
-  };
 
   const handleEdit = () => {
     onSelect(null);
@@ -39,12 +40,20 @@ export default function SelecionarData({ onSelect }: SelecionarUnidadeProps) {
   return (
     <>
       {selectedDate && isEditing ? (
-        <EditSelecionarDataComponent onEdit={handleEdit} />
+        <EditSelecionarDataComponent
+          onEdit={handleEdit}
+          selectedMonthAndDay={selectedDate}
+        />
       ) : (
         <SelecionarDataComponent
+          setSelectedMonthAndDayUtc={setSelectedMonthAndDayUtc}
+          selectDay={selectedMonthAndDayUtc}
+          selectedUnit={selectedUnit}
           onSelectDate={handleSelect}
           onSelectMonthAndDay={handleSelectedMonthAndDay}
-          onSelectHour={handleSelectHour}
+          dates={dates}
+          selectedMonthAndDay={selectedMonthAndDay as string}
+          setSelectedDate={setSelectedDate}
         />
       )}
     </>

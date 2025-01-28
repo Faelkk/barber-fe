@@ -3,13 +3,13 @@
 import Link from "next/link";
 import Button from "../../auth/button/Button";
 import Input from "../../auth/input/Input";
-import { useFormStatus } from "react-dom";
 import { FieldErrors } from "react-hook-form";
 import useEntrarFormController from "./use-entrar-form-controller";
 
 function FormButton({
   errors,
   isFormEmpty,
+  pending,
 }: {
   errors: FieldErrors<{
     name?: string;
@@ -18,32 +18,20 @@ function FormButton({
     password?: string;
   }>;
   isFormEmpty: boolean;
+  pending: boolean;
 }) {
-  const { pending } = useFormStatus();
-
   return (
-    <>
-      {pending ? (
-        <Button
-          className="mt-4"
-          disabled={isFormEmpty || Object.keys(errors).length > 0 || pending}
-        >
-          Entrando...
-        </Button>
-      ) : (
-        <Button
-          className="mt-4"
-          disabled={isFormEmpty || Object.keys(errors).length > 0 || pending}
-        >
-          Entrar
-        </Button>
-      )}
-    </>
+    <Button
+      className="mt-4"
+      disabled={isFormEmpty || Object.keys(errors).length > 0 || pending}
+    >
+      {pending ? "Entrando..." : "Entrar"}
+    </Button>
   );
 }
 
 export default function EntrarForm() {
-  const { errors, register, handleSubmit, isFormEmpty } =
+  const { errors, register, handleSubmit, isFormEmpty, pending } =
     useEntrarFormController();
 
   return (
@@ -66,13 +54,13 @@ export default function EntrarForm() {
 
       <div className="w-full mt-5">
         <Link
-          href="/resetar-senha"
+          href="/recuperar-senha"
           className="uppercase font-poppins text-Seashell-500 mt-3 text-left"
         >
           esqueci minha senha
         </Link>
       </div>
-      <FormButton errors={errors} isFormEmpty={isFormEmpty} />
+      <FormButton errors={errors} isFormEmpty={isFormEmpty} pending={pending} />
     </form>
   );
 }

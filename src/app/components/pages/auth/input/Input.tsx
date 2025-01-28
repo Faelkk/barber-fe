@@ -12,7 +12,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   ref
 ) {
   return (
-    <div className="relative">
+    <div className="relative w-full">
       <input
         ref={ref}
         name={name}
@@ -21,7 +21,7 @@ const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
         placeholder={placeholder}
         disabled={disabled}
         className={cn(
-          " w-[12rem] 3pp:w-[16rem] pp:w-[22.75rem] md:w-[28.75rem] text-black-0 bg-gray-0 rounded-[3px] p-3 font-roboto placeholder:text-black-0 focus:bg-gray-300  focus:border-black-600 transition-colors mt-[16px] border border-[#bbbb] placeholder:font-poppins placeholder:text-Seashell-950",
+          "w-full max-w-full pp:w-[18.75rem] md:w-[28.75rem] text-black-0 bg-gray-0 rounded-[3px] p-3 font-roboto placeholder:text-black-0 focus:bg-gray-300  focus:border-black-600 transition-colors mt-[16px] border border-[#bbbb] placeholder:font-poppins placeholder:text-Seashell-950",
           error && "border-red-500 focus:border-red-500",
           className
         )}

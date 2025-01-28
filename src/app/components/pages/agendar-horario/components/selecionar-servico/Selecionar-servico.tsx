@@ -4,7 +4,7 @@ import { useSelecionarServico } from "@/app/components/ui/agendamentos/hooks/use
 import SelecionarServicoComponent from "../../../../ui/agendamentos/agendar/selecionar-servico/Selecionar-servico";
 import EditSelecionarServicoComponent from "../../../../ui/agendamentos/edit/selecionar-servico/Selecionar-servico";
 import { AgendarHorarioState } from "../../agendar-horario-contaiener/use-agendar-horario-container";
-import { useEffect, useState } from "react";
+import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import getServices from "@/actions/services/get-global-services";
 import Loading from "@/app/loading";
 import { Unit } from "@/actions/units/get-units";
@@ -12,6 +12,8 @@ import { Unit } from "@/actions/units/get-units";
 interface SelecionarUnidadeProps {
   onSelect: (value: AgendarHorarioState["service"]) => void;
   selectedUnit: Unit | null;
+  setSelectTypeService: (type: "local" | "global" | null) => void;
+  setTotalAgendamento: Dispatch<SetStateAction<number | null>>;
 }
 
 export interface CombinedServicesType {
@@ -28,7 +30,9 @@ export interface CombinedServicesType {
 
 export default function SelecionarServico({
   onSelect,
+  setSelectTypeService,
   selectedUnit,
+  setTotalAgendamento,
 }: SelecionarUnidadeProps) {
   const [services, setService] = useState<CombinedServicesType[] | null>(null);
   const [isLoading, setIsLoading] = useState(false);
@@ -40,13 +44,18 @@ export default function SelecionarServico({
     });
 
   const handleSelect = (service: CombinedServicesType) => {
+    setSelectTypeService(service.type);
     onSelect(service._id);
     handleSelectService(service);
+
+    setTotalAgendamento(service.price);
   };
 
   const handleEdit = () => {
+    setSelectTypeService(null);
     onSelect(null);
     handleEditService();
+    setTotalAgendamento(null);
   };
 
   useEffect(() => {
@@ -55,18 +64,15 @@ export default function SelecionarServico({
         setIsLoading(true);
         const { data, error, ok } = await getServices();
 
-        console.log(selectedUnit?.localService, data, "datas");
-
         if (data && ok && !error) {
           const combinedServices = [
             ...(selectedUnit?.localService || []),
             ...data,
           ];
 
-          console.log(combinedServices, "combined");
-
           setService(combinedServices);
           setIsLoading(false);
+          setIsError(false);
         } else {
           throw new Error("erro ao pegar unidade");
         }

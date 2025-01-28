@@ -1,3 +1,4 @@
+import verifyTokenAction from "@/actions/auth/verify-token";
 import { jwtVerify } from "jose";
 import { cookies } from "next/headers";
 
@@ -10,6 +11,12 @@ export default async function verifyToken(token: string): Promise<boolean> {
     await jwtVerify(token, new TextEncoder().encode(jwtSecret), {
       algorithms: ["HS256"],
     });
+
+    const { valid } = await verifyTokenAction(token);
+
+    if (!valid) {
+      throw new Error("Token não é valido");
+    }
 
     return true;
   } catch {

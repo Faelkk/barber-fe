@@ -2,6 +2,7 @@
 
 import { APPOINTMENTS_DELETE } from "@/functions/api";
 import apiError from "@/functions/api-error";
+import { revalidateTag } from "next/cache";
 import { cookies } from "next/headers";
 
 export default async function deleteAppointment(appointmentId: string) {
@@ -22,9 +23,11 @@ export default async function deleteAppointment(appointmentId: string) {
       },
     });
 
-    if (!response.ok) throw new Error("Erro ao pegar as unidades.");
+    if (!response.ok) throw new Error("Erro ao deletar os agendamentos.");
 
     const { deleted } = await response.json();
+
+    revalidateTag("appointment");
 
     return { data: deleted, ok: true, error: "" };
   } catch (err: unknown) {

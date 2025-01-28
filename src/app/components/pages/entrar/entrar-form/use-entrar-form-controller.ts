@@ -3,6 +3,7 @@ import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useState } from "react";
 import entrar from "@/actions/auth/entrar";
 
 export const entrarSchema = z.object({
@@ -14,6 +15,7 @@ export type FormData = z.infer<typeof entrarSchema>;
 
 export default function useEntrarFormController() {
   const router = useRouter();
+  const [pending, setPending] = useState(false);
   const {
     register,
     handleSubmit: HookFormSubmit,
@@ -24,6 +26,7 @@ export default function useEntrarFormController() {
   });
 
   const handleSubmit = HookFormSubmit(async (dataSignin) => {
+    setPending(true);
     try {
       const newDataSignin = {
         ...dataSignin,
@@ -38,14 +41,15 @@ export default function useEntrarFormController() {
       } else {
         throw new Error(error);
       }
-    } catch (err: unknown) {
-      console.log(err);
+    } catch {
       toast.error("Erro ao fazer login");
+    } finally {
+      setPending(false);
     }
   });
 
   const values = watch();
   const isFormEmpty = !values.email || !values.password;
 
-  return { errors, handleSubmit, register, isFormEmpty };
+  return { errors, handleSubmit, register, isFormEmpty, pending };
 }

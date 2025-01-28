@@ -22,6 +22,7 @@ export function useSelecionarUnidade({
 
   const handleEditUnit = () => {
     setIsEditing(false);
+    setSelectedUnit(null);
   };
 
   return { isEditing, selectedUnit, handleSelectUnit, handleEditUnit };

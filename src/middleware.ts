@@ -12,7 +12,7 @@ export async function middleware(request: NextRequest) {
   const isPrivatePath = path.startsWith("/meus-horarios");
 
   if (isPublicPath && authenticated) {
-    return NextResponse.redirect(new URL("/home", request.url));
+    return NextResponse.redirect(new URL("/", request.url));
   }
 
   if (isPrivatePath && !authenticated) {
@@ -24,6 +24,7 @@ export async function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
+    "/",
     "/entrar",
     "/criar-conta",
     "/agendar-horario",

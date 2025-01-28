@@ -1,4 +1,5 @@
 import { CombinedServicesType } from "@/app/components/pages/agendar-horario/components/selecionar-servico/Selecionar-servico";
+import { formatPrice } from "@/functions/formatPrice";
 import Image from "next/image";
 
 interface ServiceCardProps {
@@ -13,7 +14,9 @@ export default function ServiceCard({ onSelect, service }: ServiceCardProps) {
       onClick={() => onSelect(service)}
     >
       <Image
-        src="/defaults/barber-unity.jpg"
+        src={`${
+          service.avatar ? service.avatar : "/defaults/barber-unity.jpg"
+        }`}
         width={3000}
         height={300}
         alt="Foto ilustrativa do ambiente da barbearia com cadeiras e espelhos"
@@ -24,7 +27,9 @@ export default function ServiceCard({ onSelect, service }: ServiceCardProps) {
         <span className=" md:text-xl  text-Seashell-50 font-merriweather font-bold">
           {service.name}
         </span>
-        <span className="font-poppins text-Seashell-200 text-sm">R$ 90,00</span>
+        <span className="font-poppins text-Seashell-200 text-sm">
+          {formatPrice(service.price)}
+        </span>
       </div>
     </figure>
   );

@@ -75,6 +75,7 @@ export default function UnidadesByIdSection() {
         if (ok && !error) {
           setIsLoading(false);
           setBarbearia(data);
+          setError(false);
         } else {
           setIsLoading(false);
           setError(true);

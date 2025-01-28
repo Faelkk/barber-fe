@@ -2,14 +2,14 @@ import UserIcon from "@/app/components/ui/icons/User";
 
 import EditIcon from "@/app/components/ui/icons/Edit";
 import AgendamentoCard from "../../Agendamento-card";
-import { Auth } from "@/actions/units/get-unit-by-id";
+import { Barber } from "@/actions/appointments/get-appointments";
 
 export default function SelecionarBarbeiro({
   onEdit,
   selectedUnit,
 }: {
   onEdit: () => void;
-  selectedUnit: Auth;
+  selectedUnit: Barber;
 }) {
   return (
     <AgendamentoCard>
@@ -18,7 +18,7 @@ export default function SelecionarBarbeiro({
           <div className="rounded-full h-12 w-12 bg-[#D9D9D9] flex items-center justify-center">
             <UserIcon fill="#000" width={20} height={20} />
           </div>
-          <h1 className="font-poppins font-medium pp:text-lg medium:text-2xl text-Seashell-950">
+          <h1 className="font-poppins font-medium pp:text-lg medium:text-xl text-Seashell-950">
             {selectedUnit?.name}
           </h1>
         </header>

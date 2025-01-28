@@ -2,22 +2,12 @@ import React from "react";
 import MeusHorariosCard from "../meus-horarios-card/Meus-horarios-card";
 import getAppointments from "@/actions/appointments/get-appointments";
 import MeusHorarioEmpty from "../meus-horarios-empty/Meus-horario-empty";
-
-// interface Horario {
-//   id: string;
-//   data: string;
-//   tipo: string;
-//   horario: string;
-//   cliente: string;
-//   local: string;
-// }
-
-// interface MeusHorariosListProps {
-//   horarios: Horario[];
-// }
+import getUser from "@/actions/auth/get-user";
 
 export default async function MeusHorariosList() {
-  const { data, error, ok } = await getAppointments();
+  const { data: user } = await getUser();
+
+  const { data, error, ok } = await getAppointments(user?._id as string);
 
   if (error)
     return (

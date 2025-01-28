@@ -7,20 +7,18 @@ import SelecionarBarbeiro from "../components/selecionar-barbeiro/Selecionar-bar
 import SelecionarData from "../components/selecionar-data/Selecionar-data";
 import ConfirmarAgendamento from "@/app/components/ui/agendamentos/Confirmar-Agendamento";
 import { useAgendarHorarioContainer } from "./use-agendar-horario-container";
-import { useEffect } from "react";
 
 export default function AgendarHorarioContainer() {
   const {
-    state,
+    setTotalAgendamento,
+    totalAgendamento,
     updateSelection,
     isStepCompleted,
     selectedUnit,
     setSelectedUnit,
+    setSelectTypeService,
+    handleConfirmSchedule,
   } = useAgendarHorarioContainer();
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
 
   const isAllStepsCompleted =
     isStepCompleted("unit") &&
@@ -46,6 +44,8 @@ export default function AgendarHorarioContainer() {
             <SelecionarServico
               selectedUnit={selectedUnit}
               onSelect={(value) => updateSelection("service", value)}
+              setSelectTypeService={setSelectTypeService}
+              setTotalAgendamento={setTotalAgendamento}
             />
           )}
 
@@ -63,7 +63,12 @@ export default function AgendarHorarioContainer() {
             />
           )}
 
-          {isAllStepsCompleted && <ConfirmarAgendamento />}
+          {isAllStepsCompleted && totalAgendamento && (
+            <ConfirmarAgendamento
+              onConfirmSchedule={handleConfirmSchedule}
+              totalAgendamento={totalAgendamento}
+            />
+          )}
         </section>
       </main>
     </Container>

@@ -13,7 +13,7 @@ export default function BarberCard({ onSelect, barber }: BarberCardProps) {
       onClick={() => onSelect(barber)}
     >
       <Image
-        src="/defaults/barber-unity.jpg"
+        src={`${barber.avatar ? barber.avatar : "/defaults/barber-unity.jpg"}`}
         width={3000}
         height={300}
         alt="Foto ilustrativa do ambiente da barbearia com cadeiras e espelhos"

@@ -2,7 +2,13 @@ import DateIcon from "@/app/components/ui/icons/Date";
 import EditIcon from "@/app/components/ui/icons/Edit";
 import AgendamentoCard from "../../Agendamento-card";
 
-export default function SelecionarData({ onEdit }: { onEdit: () => void }) {
+export default function SelecionarData({
+  onEdit,
+  selectedMonthAndDay,
+}: {
+  onEdit: () => void;
+  selectedMonthAndDay: string | null;
+}) {
   return (
     <AgendamentoCard>
       <section className="flex flex-col lg:items-center lg:justify-between lg:gap-2 lg:flex-row w-full lg:min-w-[800px]">
@@ -11,7 +17,7 @@ export default function SelecionarData({ onEdit }: { onEdit: () => void }) {
             <DateIcon fill="#000" width={20} height={20} />
           </div>
           <h1 className="font-poppins font-medium pp:text-lg medium:text-2xl text-Seashell-950">
-            Sábado, 30/11/2024 às 10:00
+            {selectedMonthAndDay}
           </h1>
         </header>
         <div className="block lg:hidden w-full bg-Seashell-200 h-[2px] my-5"></div>

@@ -25,6 +25,8 @@ export interface Auth {
   email: string;
   role: "Admin" | "Barber" | "Client";
   description: string;
+  avatar: string | null;
+  thumbnail: string | null;
 }
 
 export interface UnitByIdProps {

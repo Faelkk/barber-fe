@@ -4,15 +4,23 @@ import { useSelecionarBarbeiro } from "@/app/components/ui/agendamentos/hooks/us
 import SelecionarBarbeiroComponent from "../../../../ui/agendamentos/agendar/selecionar-barbeiro/Selecionar-barbeiro";
 import EditSelecionarBarbeiroComponent from "../../../../ui/agendamentos/edit/selecionar-barbeiro/Selecionar-barbeiro";
 import { AgendarHorarioState } from "../../../agendar-horario/agendar-horario-contaiener/use-agendar-horario-container";
+import { Unit } from "@/actions/units/get-units";
+import { Barber } from "@/actions/appointments/get-appointments";
+import { Dispatch, SetStateAction } from "react";
+import { EditAppointmentState } from "../../editar-horario-container/use-editar-horario-container";
 
 interface SelecionarUnidadeProps {
-  barbeiroValue: string | null;
-  onSelect: (value: AgendarHorarioState["barbeiro"]) => void;
+  barbeiroValue: Barber | null;
+  selectedUnit: Unit | null;
+  onSelect: (value: AgendarHorarioState["barber"]) => void;
+  setAppointment: Dispatch<SetStateAction<EditAppointmentState | null>>;
 }
 
 export default function SelecionarBarbeiro({
+  selectedUnit,
   barbeiroValue,
   onSelect,
+  setAppointment,
 }: SelecionarUnidadeProps) {
   const { selectedBarber, isEditing, handleEditBarber, handleSelectBarber } =
     useSelecionarBarbeiro({
@@ -20,22 +28,43 @@ export default function SelecionarBarbeiro({
       initialSelectedBarber: barbeiroValue,
     });
 
-  const handleSelect = (barber: string) => {
+  const handleSelect = (barber: Barber) => {
     handleSelectBarber(barber);
-    onSelect(barber);
+    onSelect(barber._id);
   };
 
   const handleEdit = () => {
     onSelect(null);
     handleEditBarber();
+    setAppointment((prevState) =>
+      prevState
+        ? {
+            _id: prevState._id,
+            status: prevState.status,
+            client: prevState.client,
+            barbershop: prevState.barbershop,
+            unit: prevState.unit,
+            barber: null,
+            date: null,
+            service: prevState.service,
+            serviceType: prevState.serviceType,
+          }
+        : null
+    );
   };
 
   return (
     <>
       {selectedBarber && isEditing ? (
-        <EditSelecionarBarbeiroComponent onEdit={handleEdit} />
+        <EditSelecionarBarbeiroComponent
+          onEdit={handleEdit}
+          selectedUnit={selectedBarber}
+        />
       ) : (
-        <SelecionarBarbeiroComponent onSelect={handleSelect} />
+        <SelecionarBarbeiroComponent
+          onSelect={handleSelect}
+          selectedUnit={selectedUnit}
+        />
       )}
     </>
   );

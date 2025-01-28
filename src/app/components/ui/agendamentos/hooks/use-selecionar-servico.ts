@@ -1,17 +1,16 @@
-import { GlobalService } from "@/actions/services/get-global-services";
 import { CombinedServicesType } from "@/app/components/pages/agendar-horario/components/selecionar-servico/Selecionar-servico";
 import { useState } from "react";
 
 interface UseSelecionarServicoProps {
   initialIsEditing?: boolean;
-  initialSelectedService?: GlobalService | null;
+  initialSelectedService?: CombinedServicesType | null;
 }
 
 export function useSelecionarServico({
   initialIsEditing = false,
   initialSelectedService = null,
 }: UseSelecionarServicoProps) {
-  const [isEditing, setIsEditing] = useState<true | false>(initialIsEditing);
+  const [isEditing, setIsEditing] = useState<boolean>(initialIsEditing);
   const [selectedService, setSelectedService] =
     useState<CombinedServicesType | null>(initialSelectedService);
 
@@ -22,6 +21,7 @@ export function useSelecionarServico({
 
   const handleEditService = () => {
     setIsEditing(false);
+    setSelectedService(null);
   };
 
   return { isEditing, selectedService, handleSelectService, handleEditService };

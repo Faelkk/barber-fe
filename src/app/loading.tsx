@@ -1,8 +1,9 @@
+import clsx from "clsx";
 import Spinner from "./components/ui/spinner/spinner";
 
-export default function Loading() {
+export default function Loading({ hScreen = "h-screen" }) {
   return (
-    <div className="flex w-full justify-center items-center h-screen">
+    <div className={clsx("flex w-full justify-center items-center ", hScreen)}>
       <Spinner />
     </div>
   );

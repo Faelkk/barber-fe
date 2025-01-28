@@ -1,8 +1,11 @@
+"use server";
+
 import { USER_GET } from "@/functions/api";
 import apiError from "@/functions/api-error";
 import { cookies } from "next/headers";
 
 export interface User {
+  _id: string;
   name: string;
   email: string;
   role: "Client";
@@ -30,6 +33,7 @@ export default async function getUser() {
       },
       next: {
         revalidate: 60,
+        tags: ["user"],
       },
     });
 

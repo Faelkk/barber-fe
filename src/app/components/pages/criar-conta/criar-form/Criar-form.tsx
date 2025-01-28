@@ -4,12 +4,12 @@ import Link from "next/link";
 import Input from "../../auth/input/Input";
 import Button from "../../auth/button/Button";
 import useCriarFormController from "./use-criar-form-controller";
-import { useFormStatus } from "react-dom";
 import { FieldErrors } from "react-hook-form";
 
 function FormButton({
   errors,
   isFormEmpty,
+  pending,
 }: {
   errors: FieldErrors<{
     name?: string;
@@ -18,9 +18,8 @@ function FormButton({
     password?: string;
   }>;
   isFormEmpty: boolean;
+  pending: boolean;
 }) {
-  const { pending } = useFormStatus();
-
   return (
     <>
       {pending ? (
@@ -43,7 +42,7 @@ function FormButton({
 }
 
 export default function CriarForm() {
-  const { errors, register, handleSubmit, isFormEmpty } =
+  const { errors, register, handleSubmit, isFormEmpty, pending } =
     useCriarFormController();
 
   return (
@@ -96,7 +95,7 @@ export default function CriarForm() {
         </Link>
       </div>
 
-      <FormButton errors={errors} isFormEmpty={isFormEmpty} />
+      <FormButton errors={errors} isFormEmpty={isFormEmpty} pending={pending} />
     </form>
   );
 }

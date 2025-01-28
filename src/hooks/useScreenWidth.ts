@@ -10,17 +10,14 @@ export default function useScreenWidth() {
   };
 
   useEffect(() => {
-    if (typeof window !== "undefined") {
-      // Set initial width on mount
-      setScreenWidth(window.innerWidth);
+    setScreenWidth(window.innerWidth);
 
-      // Add resize listener
-      window.addEventListener("resize", handleSizeScreenChange);
+    // Add resize listener
+    window.addEventListener("resize", handleSizeScreenChange);
 
-      return () => {
-        window.removeEventListener("resize", handleSizeScreenChange);
-      };
-    }
+    return () => {
+      window.removeEventListener("resize", handleSizeScreenChange);
+    };
   }, []);
 
   return { screenWidth };

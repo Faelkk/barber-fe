@@ -32,7 +32,7 @@ export default function MeusHorariosCard({ horario }: MeusHorariosCardProp) {
               </div>
               <h2 className="text-cold-gray-900 font-poppins ">
                 <span className="text-cold-gray-900 font-poppins capitalize">
-                  {horario.service.name}
+                  {horario.service?.name}
                 </span>
               </h2>
             </li>

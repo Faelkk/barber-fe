@@ -17,7 +17,9 @@ export default function SelecionarDataButtonItem({
       )}
       onClick={onClick}
     >
-      <span className="px-4">{children}</span>
+      <span className="px-4 text-ellipsis overflow-hidden text-nowrap">
+        {children}
+      </span>
     </li>
   );
 }

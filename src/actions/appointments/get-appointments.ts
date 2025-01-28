@@ -53,14 +53,15 @@ export interface Address {
   country: string;
   city: string;
 }
-export default async function getAppointments() {
+
+export default async function getAppointments(userId: string) {
   try {
     const token = (await cookies()).get("token")?.value;
 
     const headers = new Headers();
     headers.append("Authorization", "Bearer " + token);
 
-    const { url } = APPOINTMENTS_GET();
+    const { url } = APPOINTMENTS_GET(userId);
     const response = await fetch(url, {
       method: "GET",
       headers: {
@@ -68,10 +69,11 @@ export default async function getAppointments() {
       },
       next: {
         revalidate: 60,
+        tags: ["appointment"],
       },
     });
 
-    if (!response.ok) throw new Error("Erro ao pegar as unidades.");
+    if (!response.ok) throw new Error("Erro ao pegar os agendamentos.");
 
     const { appointments } = await response.json();
 

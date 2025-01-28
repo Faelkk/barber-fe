@@ -11,14 +11,13 @@ export default function SelecionarBarbeiro({
   selectedUnit: Unit | null;
   onSelect: (barber: Auth) => void;
 }) {
-  console.log(selectedUnit, "unit");
   return (
     <section className="bg-Seashell-50 border-2 border-Copper-300 rounded py-5 px-4 md:px-8">
       <header className="flex items-center gap-4">
         <div className="rounded-full h-12 w-12 bg-[#D9D9D9] flex items-center justify-center">
           <UserIcon fill="#000" width={20} height={20} />
         </div>
-        <h1 className="font-poppins font-medium pp:text-lg medium:text-2xl text-Seashell-950">
+        <h1 className="font-poppins font-medium pp:text-lg medium:text-xl text-Seashell-950">
           Selecione um barbeiro
         </h1>
       </header>

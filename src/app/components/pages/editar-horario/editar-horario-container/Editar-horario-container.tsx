@@ -8,21 +8,31 @@ import SelecionarData from "../components/selecionar-data/Selecionar-data";
 import ConfirmarAgendamento from "@/app/components/ui/agendamentos/Confirmar-Agendamento";
 
 import { useEditarHorarioContainer } from "./use-editar-horario-container";
-import { useEffect } from "react";
+
+import Loading from "@/app/loading";
 
 export default function EditarHorarioContainer() {
-  const { state, updateSelection, isStepCompleted } =
-    useEditarHorarioContainer();
-
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
+  const {
+    totalAgendamento,
+    setTotalAgendamento,
+    appointment,
+    isLoading,
+    selectedUnit,
+    setSelectedUnit,
+    setSelectTypeService,
+    setAppointment,
+    updateSelection,
+    isStepCompleted,
+    handleConfirmSchedule,
+  } = useEditarHorarioContainer();
 
   const isAllStepsCompleted =
-    isStepCompleted("unidade") &&
-    isStepCompleted("servico") &&
-    isStepCompleted("barbeiro") &&
-    isStepCompleted("data");
+    isStepCompleted("unit") &&
+    isStepCompleted("service") &&
+    isStepCompleted("barber") &&
+    isStepCompleted("date");
+
+  if (isLoading) return <Loading />;
 
   return (
     <Container>
@@ -33,33 +43,52 @@ export default function EditarHorarioContainer() {
           </h1>
         </header>
         <section className="flex flex-col mt-10 gap-10">
-          <SelecionarUnidade
-            unityValue={state.unidade}
-            onSelect={(value) => updateSelection("unidade", value)}
-          />
+          {appointment && !isLoading && (
+            <>
+              <SelecionarUnidade
+                setSelectedUnit={setSelectedUnit}
+                unityValue={appointment?.unit}
+                setAppointment={setAppointment}
+                onSelect={(value) => updateSelection("unit", value)}
+              />
 
-          {isStepCompleted("unidade") && (
-            <SelecionarServico
-              serviceValue={state.servico}
-              onSelect={(value) => updateSelection("servico", value)}
-            />
+              {isStepCompleted("unit") && (
+                <SelecionarServico
+                  setTotalAgendamento={setTotalAgendamento}
+                  selectedUnit={selectedUnit}
+                  setSelectTypeService={setSelectTypeService}
+                  serviceValue={appointment?.service}
+                  setAppointment={setAppointment}
+                  onSelect={(value) => updateSelection("service", value)}
+                />
+              )}
+
+              {isStepCompleted("service") && (
+                <SelecionarBarbeiro
+                  setAppointment={setAppointment}
+                  selectedUnit={selectedUnit}
+                  barbeiroValue={appointment.barber}
+                  onSelect={(value) => updateSelection("barber", value)}
+                />
+              )}
+
+              {isStepCompleted("barber") && (
+                <SelecionarData
+                  selectedUnit={selectedUnit}
+                  dataValue={appointment.date}
+                  setAppointment={setAppointment}
+                  onSelect={(value) => updateSelection("date", value)}
+                />
+              )}
+
+              {isAllStepsCompleted && totalAgendamento && (
+                <ConfirmarAgendamento
+                  totalAgendamento={totalAgendamento}
+                  onConfirmSchedule={handleConfirmSchedule}
+                />
+              )}
+            </>
           )}
-
-          {isStepCompleted("servico") && (
-            <SelecionarBarbeiro
-              barbeiroValue={state.barbeiro}
-              onSelect={(value) => updateSelection("barbeiro", value)}
-            />
-          )}
-
-          {isStepCompleted("barbeiro") && (
-            <SelecionarData
-              dataValue={state.data}
-              onSelect={(value) => updateSelection("data", value)}
-            />
-          )}
-
-          {isAllStepsCompleted && <ConfirmarAgendamento />}
         </section>
       </main>
     </Container>

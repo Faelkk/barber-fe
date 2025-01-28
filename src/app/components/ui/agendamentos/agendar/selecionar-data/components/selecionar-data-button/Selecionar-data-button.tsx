@@ -1,8 +1,5 @@
 "use client";
 
-import { useState } from "react";
-import { format, addDays } from "date-fns";
-import { ptBR } from "date-fns/locale";
 import ArrowDownIcon from "@/app/components/ui/icons/ArrowDown";
 import {
   DropdownMenu,
@@ -11,30 +8,34 @@ import {
 } from "@/components/ui/dropdown-menu";
 import useToggleByIndex from "@/hooks/useToggleByIndex";
 import SelecionarDataButtonItem from "../selecionar-data-button-item/Selecionar-data-button-item";
+import { Dispatch, SetStateAction } from "react";
 
 export default function SelecionarDataButton({
+  dates,
+  selectedMonthAndDay,
+  setSelectedDate,
   onSelectMonthAndDay,
+  setSelectedMonthAndDayUtc,
 }: {
+  dates:
+    | {
+        date: string;
+        formatted: string;
+      }[]
+    | null;
+  selectedMonthAndDay: string;
+  setSelectedDate: Dispatch<SetStateAction<string | null>>;
   onSelectMonthAndDay: (monthAndDay: string) => void;
+  setSelectedMonthAndDayUtc: Dispatch<SetStateAction<string | null>>;
 }) {
   const { handleButtonClick, isToggleOpen, isMenuOpen, toggleMenu } =
     useToggleByIndex(0);
 
-  const generateNext30Days = () => {
-    const today = new Date();
-    return Array.from({ length: 30 }, (_, i) => {
-      const date = addDays(today, i);
-      return format(date, "dd 'de' MMMM 'de' yyyy | EEEE", { locale: ptBR });
-    });
-  };
-
-  const dates = generateNext30Days();
-  const [selectedDate, setSelectedDate] = useState(dates[0]);
-
   const handleDateSelect = (index: number) => {
-    setSelectedDate(dates[index]);
     handleButtonClick(index);
-    onSelectMonthAndDay(dates[index]);
+    setSelectedDate(dates?.[index]?.formatted ?? null);
+    setSelectedMonthAndDayUtc(dates?.[index]?.date ?? null);
+    onSelectMonthAndDay(dates?.[index]?.formatted ?? "");
     toggleMenu();
   };
 
@@ -42,8 +43,8 @@ export default function SelecionarDataButton({
     <DropdownMenu open={isMenuOpen} onOpenChange={toggleMenu}>
       <DropdownMenuTrigger className="outline-none w-full flex flex-col gap-4">
         <div className="border border-Seashell-900 bg-Seashell-100 rounded flex justify-between gap-2 items-center p-3 w-full mx-auto max-h-[50px]">
-          <span className="text-cold-gray-900 font-poppins text-sm pp:text-base p:text-lg font-medium overflow-hidden whitespace-normal pp:whitespace-nowrap medium:whitespace-normal text-ellipsis max-w-[170px] pp:max-w-[200px] p:max-w-[300px] medium:max-w-full">
-            {selectedDate}
+          <span className="text-cold-gray-900 font-poppins text-sm pp:text-base p:text-lg font-medium overflow-hidden whitespace-nowrap pp:whitespace-nowrap medium:whitespace-normal text-ellipsis max-w-[170px] pp:max-w-[200px] p:max-w-[300px] medium:max-w-full">
+            {selectedMonthAndDay && selectedMonthAndDay}
           </span>
           <ArrowDownIcon fill="#3D3D3D" width={16} height={11} />
         </div>
@@ -53,15 +54,17 @@ export default function SelecionarDataButton({
         className="DropdownMenuContent max-h-[150px]"
       >
         <ul className="flex flex-col pt-2 font-poppins text-black max-h-[300px]">
-          {dates.map((date, index) => (
-            <SelecionarDataButtonItem
-              key={index}
-              isActive={isToggleOpen === index}
-              onClick={() => handleDateSelect(index)}
-            >
-              {date}
-            </SelecionarDataButtonItem>
-          ))}
+          {dates?.map((date, index) => {
+            return (
+              <SelecionarDataButtonItem
+                key={index}
+                isActive={isToggleOpen === index}
+                onClick={() => handleDateSelect(index)}
+              >
+                {date.formatted}
+              </SelecionarDataButtonItem>
+            );
+          })}
         </ul>
       </DropdownMenuContent>
     </DropdownMenu>

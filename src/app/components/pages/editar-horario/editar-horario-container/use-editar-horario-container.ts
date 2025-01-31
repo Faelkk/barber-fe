@@ -83,6 +83,25 @@ export function useEditarHorarioContainer() {
 
   const isStepCompleted = (step: keyof EditarHorarioState) => !!state[step];
 
+  const isStateChanged = () => {
+    if (!appointment) return false;
+
+    return (
+      state.unit !== appointment.unit?._id ||
+      state.service !== appointment.service?._id ||
+      state.barber !== appointment.barber?._id ||
+      state.date !== appointment.date ||
+      state.serviceType !== appointment.serviceType ||
+      state.client !== appointment.client?._id
+    );
+  };
+
+  const isAllStepsCompleted =
+    isStepCompleted("unit") &&
+    isStepCompleted("service") &&
+    isStepCompleted("barber") &&
+    isStepCompleted("date");
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
@@ -136,6 +155,8 @@ export function useEditarHorarioContainer() {
         unit: appointment.unit?._id || null,
       }));
 
+      setTotalAgendamento(appointment.service?.price as number);
+
       setSelectedUnit(appointment.unit);
       setShouldSync(false);
     }
@@ -178,5 +199,7 @@ export function useEditarHorarioContainer() {
     setSelectedUnit,
     appointment,
     setSelectTypeService,
+    isStateChanged,
+    isAllStepsCompleted,
   };
 }

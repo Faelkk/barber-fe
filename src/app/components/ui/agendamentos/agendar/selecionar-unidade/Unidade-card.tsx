@@ -14,8 +14,8 @@ export default function UnidadeCard({ onSelect, unit }: UnidadeCardProps) {
     >
       <Image
         src={`${unit.avatar ? unit.avatar : "/defaults/barber-unity.jpg"}`}
-        width={3000}
-        height={300}
+        width={900}
+        height={600}
         alt={`Foto ilustrativa do ambiente da barbearia em ${unit.address.fullAddress}`}
         className="w-full h-full rounded object-cover "
         priority

@@ -3,12 +3,12 @@ import UnidadesByIdServiceContainer from "../unidades-by-id-service-container/Un
 import { GlobalService } from "@/actions/services/get-global-services";
 
 export default function UnidadesByIdService({
+  globalServices,
   servicos,
 }: {
   servicos: GlobalService[];
+  globalServices: GlobalService[];
 }) {
-  console.log(servicos);
-
   return (
     <div className="flex flex-col items-center max-w-full mt-20 px-4">
       <h2
@@ -23,7 +23,10 @@ export default function UnidadesByIdService({
       </p>
 
       <div className="flex flex-col items-center w-full">
-        <UnidadesByIdServiceContainer servicos={servicos} />
+        <UnidadesByIdServiceContainer
+          servicos={servicos}
+          globalServices={globalServices}
+        />
 
         <Button
           href="/servicos"

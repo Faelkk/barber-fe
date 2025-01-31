@@ -14,8 +14,8 @@ export default function BarberCard({ onSelect, barber }: BarberCardProps) {
     >
       <Image
         src={`${barber.avatar ? barber.avatar : "/defaults/barber-unity.jpg"}`}
-        width={3000}
-        height={300}
+        width={900}
+        height={600}
         alt="Foto ilustrativa do ambiente da barbearia com cadeiras e espelhos"
         className="w-full h-full rounded object-cover"
         priority

@@ -1,36 +1,62 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Barber-Fe
 
-## Getting Started
+Uma aplicação front-end para uma barbearia, desenvolvida com um layout intuitivo e moderno. O projeto apresenta informações essenciais sobre a barbearia, incluindo localização, unidades, serviços, equipe de barbeiros, redes sociais e formas de contato.
+Com um sistema de autenticação integrado, tanto barbeiros quanto clientes podem gerenciar agendamentos de forma prática e eficiente.
 
-First, run the development server:
+## 📷 Layout
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## 🚀 Tecnologias Utilizadas
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+💻 **Front-end**
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+- [Next-js](https://nextjs.org/docs/pages/building-your-application/configuring/environment-variables)
+- [React](https://react.dev/)
+- [Typescript](https://www.typescriptlang.org)
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+📚 **Bibliotecas**
 
-## Learn More
+- [jose](https://www.npmjs.com/package/jose) - Utilizado para manipulação de tokens JWT.
+- [date-fns](https://www.npmjs.com/package/date-fns) - Biblioteca para manipulação de datas.
+- [clsx](https://www.npmjs.com/package/clsx)- Facilita a concatenação de classes CSS.
+- [react-hook-form](https://react-hook-form.com/) Gerenciamento de formulários.
+- [react-hot-toast](https://react-hot-toast.com/) Exibição de notificações.
+- [radix-ui](https://www.radix-ui.com/) Componentes acessíveis e estilizados.
+- [zod](https://zod.dev/) Validação de dados com TypeScript.
 
-To learn more about Next.js, take a look at the following resources:
+🎨 **Estilização**
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+- [tailwindcss](https://tailwindcss.com/docs/installation): Framework de estilização utilitária.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+🔋 **Versionamento e Deploy**
 
-## Deploy on Vercel
+- [Git](https://git-scm.com) Controle de versão.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+⚙️ **Configuranções e Instalações**
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+Clone do Projeto
+
+    $ git clone https://github.com/Faelkk/my-portfolio
+
+Instalando as dependências
+
+    $ npm install
+
+Iniciando o projeto
+
+    $ npm run dev
+
+<br>
+
+**Como me ajudar nesse projeto?**
+
+- Você ira me ajudar muito me seguindo aqui no GitHub
+- Dando uma estrela no projeto
+- Conectando-se comigo no LinkedIn para fazer parte da minha rede.
+
+<br>
+
+**📝 Autor**
+
+Se gostou, não esqueça de deixar uma estrela! 🚀
+
+[Rafael Achtenberg](linkedin.com/in/rafael-achtenberg-7a4b12284/)

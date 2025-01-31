@@ -16,7 +16,7 @@ export default function SelecionarData({
           <div className="rounded-full h-12 w-12 bg-[#D9D9D9] flex items-center justify-center">
             <DateIcon fill="#000" width={20} height={20} />
           </div>
-          <h1 className="font-poppins font-medium pp:text-lg medium:text-2xl text-Seashell-950">
+          <h1 className="font-poppins font-medium pp:text-lg  text-Seashell-950">
             {selectedMonthAndDay}
           </h1>
         </header>

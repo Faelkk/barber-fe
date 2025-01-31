@@ -1,6 +1,6 @@
 import Button from "@/app/components/ui/button/Button";
 
-export default function Unidades() {
+export default async function Unidades() {
   return (
     <section
       aria-labelledby="unidades-heading"

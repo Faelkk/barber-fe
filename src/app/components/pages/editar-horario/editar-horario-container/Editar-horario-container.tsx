@@ -23,14 +23,10 @@ export default function EditarHorarioContainer() {
     setAppointment,
     updateSelection,
     isStepCompleted,
+    isAllStepsCompleted,
+    isStateChanged,
     handleConfirmSchedule,
   } = useEditarHorarioContainer();
-
-  const isAllStepsCompleted =
-    isStepCompleted("unit") &&
-    isStepCompleted("service") &&
-    isStepCompleted("barber") &&
-    isStepCompleted("date");
 
   if (isLoading) return <Loading />;
 
@@ -85,6 +81,7 @@ export default function EditarHorarioContainer() {
                 <ConfirmarAgendamento
                   totalAgendamento={totalAgendamento}
                   onConfirmSchedule={handleConfirmSchedule}
+                  isDisabled={!isStateChanged()}
                 />
               )}
             </>

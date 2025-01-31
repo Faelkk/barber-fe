@@ -7,7 +7,7 @@ export default function UnidadesByIdServiceCard({
   servico: GlobalService;
 }) {
   return (
-    <div className=" flex flex-col justify-between w-full   md:min-w-[300px] md:max-h-[250px] default:w-[400px] medium:h-auto  flex-shrink-0 rounded border-2 border-Copper-800 px-3 py-5 bg-Copper-50/80 drop-shadow-md">
+    <div className=" flex flex-col justify-between w-full   md:min-w-[300px] md:w-a md:max-h-[250px] min-h-[160px] default:w-[400px] medium:h-auto  flex-shrink-0 rounded border-2 border-Copper-800 px-3 py-5 bg-Copper-50/80 drop-shadow-md">
       <header className="flex flex-col pp:flex-row pp:items-center pp:justify-between gap-2 pp:gap-10">
         <h1 className="font-merriweather text-2xl  font-bold text-cold-gray-800 capitalize">
           {servico.name}

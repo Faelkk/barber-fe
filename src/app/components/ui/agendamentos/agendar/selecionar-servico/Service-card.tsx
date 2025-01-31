@@ -17,8 +17,8 @@ export default function ServiceCard({ onSelect, service }: ServiceCardProps) {
         src={`${
           service.avatar ? service.avatar : "/defaults/barber-unity.jpg"
         }`}
-        width={3000}
-        height={300}
+        width={900}
+        height={600}
         alt="Foto ilustrativa do ambiente da barbearia com cadeiras e espelhos"
         className="w-full h-full rounded object-cover"
         priority

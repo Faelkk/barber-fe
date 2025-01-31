@@ -3,8 +3,6 @@
 Uma aplicação front-end para uma barbearia, desenvolvida com um layout intuitivo e moderno. O projeto apresenta informações essenciais sobre a barbearia, incluindo localização, unidades, serviços, equipe de barbeiros, redes sociais e formas de contato.
 Com um sistema de autenticação integrado, tanto barbeiros quanto clientes podem gerenciar agendamentos de forma prática e eficiente.
 
-## 📷 Layout
-
 ## 🚀 Tecnologias Utilizadas
 
 💻 **Front-end**
@@ -30,6 +28,20 @@ Com um sistema de autenticação integrado, tanto barbeiros quanto clientes pode
 🔋 **Versionamento e Deploy**
 
 - [Git](https://git-scm.com) Controle de versão.
+
+## 📷 Layout
+
+<img style="width:1920px" src="public/readme/home.png" /> 
+<img style="width:1920px" src="public/readme/about.png" /> 
+<img style="width:1920px" src="public/readme/footer.png" />
+<img style="width:1920px" src="public/readme/create.png" />
+<img style="width:1920px" src="public/readme/login.png" />
+<img style="width:1920px" src="public/readme/recovery.png" />
+<img style="width:1920px" src="public/readme/services.png" />
+<img style="width:1920px" src="public/readme/units.png" />
+<img style="width:1920px" src="public/readme/unidade-by-id.png" />
+<img style="width:1920px" src="public/readme/horarios.png" />
+<img style="width:1920px" src="public/readme/horarios.png" />
 
 ⚙️ **Configuranções e Instalações**
 

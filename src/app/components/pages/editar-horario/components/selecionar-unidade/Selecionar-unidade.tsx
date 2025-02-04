@@ -3,7 +3,7 @@
 import EditSelecionarUnidadeComponent from "../../../../ui/agendamentos/edit/selecionar-unidade/Selecionar-unidade";
 import SelecionarUnidadeComponent from "../../../../ui/agendamentos/agendar/selecionar-unidade/Selecionar-unidade";
 import { useSelecionarUnidade } from "@/app/components/ui/agendamentos/hooks/use-selecionar-unidade";
-import { AgendarHorarioState } from "../../../agendar-horario/agendar-horario-contaiener/use-agendar-horario-container";
+import { AgendarHorarioState } from "../../../agendar-horario/agendar-horario-container/use-agendar-horario-container";
 import { Dispatch, SetStateAction } from "react";
 import { Unit } from "@/actions/appointments/get-appointments";
 import { Unit as UnitTyped } from "@/actions/units/get-units";

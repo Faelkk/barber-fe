@@ -14,7 +14,7 @@ export default function SelecionarUnidade({
     <AgendamentoCard>
       <section className="flex flex-col lg:items-center lg:justify-between lg:gap-2 lg:flex-row w-full lg:min-w-[800px]">
         <header className="flex items-center gap-4">
-          <div className="rounded-full h-12 w-12 bg-[#D9D9D9] flex items-center justify-center">
+          <div className="hidden pp:flex rounded-full h-12 w-12 bg-[#D9D9D9]  items-center justify-center">
             <LocationIcon fill="#000" width={16} height={20} />
           </div>
           <h1 className="font-poppins font-medium pp:text-lg medium:text-xl text-Seashell-950">

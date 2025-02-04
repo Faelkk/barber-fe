@@ -8,7 +8,7 @@ import {
   setMilliseconds,
 } from "date-fns";
 import { ptBR } from "date-fns/locale";
-import { AgendarHorarioState } from "@/app/components/pages/agendar-horario/agendar-horario-contaiener/use-agendar-horario-container";
+import { AgendarHorarioState } from "@/app/components/pages/agendar-horario/agendar-horario-container/use-agendar-horario-container";
 
 interface UseSelecionarDataProps {
   initialIsEditing?: boolean;

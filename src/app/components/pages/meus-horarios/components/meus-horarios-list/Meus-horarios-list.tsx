@@ -1,27 +1,20 @@
 import React from "react";
-import MeusHorariosCard from "../meus-horarios-card/Meus-horarios-card";
-import getAppointments from "@/actions/appointments/get-appointments";
-import MeusHorarioEmpty from "../meus-horarios-empty/Meus-horario-empty";
+
 import getUser from "@/actions/auth/get-user";
+import MeusHorariosListBarber from "../meus-horarios-list-barber/Meus-horarios-list-barber";
+import MeusHorarioListById from "../meus-horarios-list-by-id/Meus-horario-list-by-id";
 
 export default async function MeusHorariosList() {
-  const { data: user } = await getUser();
+  const { data: user, error, ok } = await getUser();
 
-  const { data, error, ok } = await getAppointments(user?._id as string);
-
-  if (error)
+  if (user && !error && ok)
     return (
-      <div className="flex justify-center">
-        <MeusHorarioEmpty />
-      </div>
-    );
-
-  if (data && ok)
-    return (
-      <div className="justify-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10 ">
-        {data.map((horario) => (
-          <MeusHorariosCard key={horario._id} horario={horario} />
-        ))}
-      </div>
+      <>
+        {user.role === "Barber" ? (
+          <MeusHorariosListBarber user={user} />
+        ) : (
+          <MeusHorarioListById user={user} />
+        )}
+      </>
     );
 }

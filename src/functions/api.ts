@@ -89,8 +89,26 @@ export function CREATE_APPOINTMENT() {
   };
 }
 
+export function CREATE_APPOINTMENT_BY_BARBER() {
+  return {
+    url: `http://localhost:5000/appointment/guestName?barberShopId=${barberShopId}`,
+  };
+}
+
 export function EDIT_APPOINTMENT(appointmentId: string) {
   return {
     url: `http://localhost:5000/appointment/${appointmentId}?barberShopId=${barberShopId}`,
+  };
+}
+
+export function EDIT_APPOINTMENT_BY_BARBER(appointmentId: string) {
+  return {
+    url: `http://localhost:5000/appointment/guestName/${appointmentId}?barberShopId=${barberShopId}`,
+  };
+}
+
+export function APPOINTMENTS_COMPLETE(appointmentId: string) {
+  return {
+    url: `http://localhost:5000/appointment/change-status/${appointmentId}?barberShopId=${barberShopId}`,
   };
 }

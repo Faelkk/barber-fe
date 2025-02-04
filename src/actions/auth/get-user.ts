@@ -8,7 +8,7 @@ export interface User {
   _id: string;
   name: string;
   email: string;
-  role: "Client";
+  role: "Client" | "Barber" | "Developer";
   phoneNumber: string;
   appointments?: string[];
   barbershop?: string;

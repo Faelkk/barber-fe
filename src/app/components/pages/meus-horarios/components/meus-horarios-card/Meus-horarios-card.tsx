@@ -9,12 +9,17 @@ import MeusHorariosButtonEdit from "../meus-horarios-button-edit/Meus-horarios-b
 import MeusHorariosButtonDelete from "../meus-horarios-button-delete/Meus-horarios-button-delete";
 import { Appointment } from "@/actions/appointments/get-appointments";
 import { formatDate } from "@/functions/formatDate";
+import MeusHorariosCompleteSchedule from "../meus-horarios-complete-schedule/Meus-horarios-complete-schedule";
 
 interface MeusHorariosCardProp {
   horario: Appointment;
+  isBarber: boolean;
 }
 
-export default function MeusHorariosCard({ horario }: MeusHorariosCardProp) {
+export default function MeusHorariosCard({
+  horario,
+  isBarber,
+}: MeusHorariosCardProp) {
   return (
     <section className="bg-Seashell-50 border-2 border-Copper-300 rounded py-5 px-4 md:px-8">
       <div className="flex flex-col ">
@@ -32,7 +37,7 @@ export default function MeusHorariosCard({ horario }: MeusHorariosCardProp) {
               </div>
               <h2 className="text-cold-gray-900 font-poppins ">
                 <span className="text-cold-gray-900 font-poppins capitalize">
-                  {horario.service?.name}
+                  {horario.service.name}
                 </span>
               </h2>
             </li>
@@ -57,7 +62,7 @@ export default function MeusHorariosCard({ horario }: MeusHorariosCardProp) {
                 <UserIcon fill="#000" width={20} height={20} />
               </div>
               <span className="text-cold-gray-900 font-poppins capitalize">
-                {horario.client.name}
+                {horario.guestName ? horario.guestName : horario?.client?.name}
               </span>
             </li>
             <li className="flex items-center gap-2">
@@ -69,9 +74,16 @@ export default function MeusHorariosCard({ horario }: MeusHorariosCardProp) {
               </span>
             </li>
           </ul>
-          <div className="flex flex-col medium:flex-row items-center gap-2 mt-5 w-full">
-            <MeusHorariosButtonDelete deleteId={horario._id} />
-            <MeusHorariosButtonEdit horarioId={horario._id} />
+          <div className="flex flex-col items-center gap-2 mt-5 w-full">
+            <div className="flex flex-col pp:flex-row gap-4 w-full">
+              <MeusHorariosButtonDelete deleteId={horario._id} />
+              <MeusHorariosButtonEdit horario={horario} />
+            </div>
+            {isBarber ? (
+              <MeusHorariosCompleteSchedule horarioId={horario._id} />
+            ) : (
+              ""
+            )}
           </div>
         </section>
       </div>

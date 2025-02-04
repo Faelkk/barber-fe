@@ -6,9 +6,10 @@ import SelecionarServico from "../components/selecionar-servico/Selecionar-servi
 import SelecionarBarbeiro from "../components/selecionar-barbeiro/Selecionar-barbeiro";
 import SelecionarData from "../components/selecionar-data/Selecionar-data";
 import ConfirmarAgendamento from "@/app/components/ui/agendamentos/Confirmar-Agendamento";
-import { useAgendarHorarioContainer } from "./use-agendar-horario-container";
+import { useAgendarHorarioContainerByBarber } from "./use-agendar-horario-container-by-barber";
+import InputGuestName from "../components/input-guest-name/Input-guest-name";
 
-export default function AgendarHorarioContainer() {
+export default function AgendarHorarioContainerByBarber() {
   const {
     setTotalAgendamento,
     totalAgendamento,
@@ -18,9 +19,10 @@ export default function AgendarHorarioContainer() {
     setSelectedUnit,
     setSelectTypeService,
     handleConfirmSchedule,
-  } = useAgendarHorarioContainer();
+  } = useAgendarHorarioContainerByBarber();
 
   const isAllStepsCompleted =
+    isStepCompleted("guestName") &&
     isStepCompleted("unit") &&
     isStepCompleted("service") &&
     isStepCompleted("barber") &&
@@ -34,11 +36,16 @@ export default function AgendarHorarioContainer() {
             Agendar horário
           </h1>
         </header>
-        <section className="flex flex-col mt-10 gap-10">
-          <SelecionarUnidade
-            onSelect={(value) => updateSelection("unit", value)}
-            setSelectedUnit={setSelectedUnit}
+        <section className="flex flex-col mt-10 gap-10 w-full">
+          <InputGuestName
+            onSelect={(value) => updateSelection("guestName", value)}
           />
+          {isStepCompleted("guestName") && (
+            <SelecionarUnidade
+              onSelect={(value) => updateSelection("unit", value)}
+              setSelectedUnit={setSelectedUnit}
+            />
+          )}
 
           {isStepCompleted("unit") && (
             <SelecionarServico
@@ -48,23 +55,21 @@ export default function AgendarHorarioContainer() {
               setTotalAgendamento={setTotalAgendamento}
             />
           )}
-
           {isStepCompleted("service") && (
             <SelecionarBarbeiro
               selectedUnit={selectedUnit}
               onSelect={(value) => updateSelection("barber", value)}
             />
           )}
-
           {isStepCompleted("barber") && (
             <SelecionarData
               selectedUnit={selectedUnit}
               onSelect={(value) => updateSelection("date", value)}
             />
           )}
-
           {isAllStepsCompleted && totalAgendamento && (
             <ConfirmarAgendamento
+              isDisabled={false}
               onConfirmSchedule={handleConfirmSchedule}
               totalAgendamento={totalAgendamento}
             />

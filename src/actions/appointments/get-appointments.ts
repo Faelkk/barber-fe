@@ -6,7 +6,7 @@ import { cookies } from "next/headers";
 
 export interface Appointment {
   _id: string;
-  client: Client;
+  client: Client | null;
   barber: Barber;
   service: Service;
   barbershop: string;
@@ -14,6 +14,7 @@ export interface Appointment {
   date: string;
   status: "scheduled" | "completed" | "cancelled";
   unit: Unit;
+  guestName: string | null;
 }
 
 export interface Client {

@@ -3,7 +3,7 @@
 import SelecionarDataComponent from "../../../../ui/agendamentos/agendar/selecionar-data/Selecionar-data";
 import EditSelecionarDataComponent from "../../../../ui/agendamentos/edit/selecionar-data/Selecionar-data";
 import { useSelecionarData } from "@/app/components/ui/agendamentos/hooks/use-selecionar-date";
-import { AgendarHorarioState } from "../../agendar-horario-contaiener/use-agendar-horario-container";
+import { AgendarHorarioState } from "../../agendar-horario-container/use-agendar-horario-container";
 import { Unit } from "@/actions/units/get-units";
 
 interface SelecionarUnidadeProps {

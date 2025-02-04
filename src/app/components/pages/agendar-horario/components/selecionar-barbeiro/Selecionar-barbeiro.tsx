@@ -3,7 +3,7 @@
 import { useSelecionarBarbeiro } from "@/app/components/ui/agendamentos/hooks/use-selecionar-barbeiro";
 import SelecionarBarbeiroComponent from "../../../../ui/agendamentos/agendar/selecionar-barbeiro/Selecionar-barbeiro";
 import EditSelecionarBarbeiroComponent from "../../../../ui/agendamentos/edit/selecionar-barbeiro/Selecionar-barbeiro";
-import { AgendarHorarioState } from "../../agendar-horario-contaiener/use-agendar-horario-container";
+import { AgendarHorarioState } from "../../agendar-horario-container/use-agendar-horario-container";
 import { Unit } from "@/actions/units/get-units";
 import { Auth } from "@/actions/units/get-unit-by-id";
 

@@ -3,7 +3,7 @@
 import { useSelecionarServico } from "@/app/components/ui/agendamentos/hooks/use-selecionar-servico";
 import SelecionarServicoComponent from "../../../../ui/agendamentos/agendar/selecionar-servico/Selecionar-servico";
 import EditSelecionarServicoComponent from "../../../../ui/agendamentos/edit/selecionar-servico/Selecionar-servico";
-import { AgendarHorarioState } from "../../agendar-horario-contaiener/use-agendar-horario-container";
+import { AgendarHorarioState } from "../../agendar-horario-container/use-agendar-horario-container";
 import { Dispatch, SetStateAction, useEffect, useState } from "react";
 import getServices from "@/actions/services/get-global-services";
 import Loading from "@/app/loading";

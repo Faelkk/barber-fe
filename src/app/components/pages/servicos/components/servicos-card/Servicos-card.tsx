@@ -11,8 +11,6 @@ export default function ServicosCard({
   descricao,
   imagem,
 }: ServicoCardProps) {
-  console.log(imagem);
-
   return (
     <div className="flex flex-col items-center bg-Seashell-50 pt-2 pb-5 px-2 rounded-md drop-shadow-md md:max-w-[365px]  md:min-w-[365px] ">
       <div className=" relative flex-grow w-full max-h-[300px]  min-h-[300px] h-[300px]">

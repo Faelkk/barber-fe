@@ -4,8 +4,6 @@ import ServicosCard from "../servicos-card/Servicos-card";
 export default async function ServicosList() {
   const { data: services, error, ok } = await getServices();
 
-  console.log(services, "teste");
-
   if (error) return <h2>Um erro ocorreu.</h2>;
 
   // const servicos = [

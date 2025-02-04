@@ -1,7 +1,7 @@
 import Container from "@/app/components/ui/container/Container";
 
 import Button from "@/app/components/ui/button/Button";
-import ServicosContainer from "../components/servicos-container/Servicos-container";
+import ServicosList from "../components/servicos-list/Servicos-list";
 
 export default function ServicosSection() {
   return (
@@ -10,7 +10,7 @@ export default function ServicosSection() {
         <h1 className="font-merriweather text-4xl text-black font-bold">
           Nossos serviços
         </h1>
-        <ServicosContainer />
+        <ServicosList />
         <Button
           href="/agendar-horario"
           borderColor="border-cold-gray-900"

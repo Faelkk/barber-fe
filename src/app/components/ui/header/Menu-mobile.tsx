@@ -13,6 +13,7 @@ import {
 
 import { Cross2Icon, HamburgerMenuIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
+import UserIcon from "../icons/User";
 
 export default function MenuMobile({
   user,
@@ -33,13 +34,24 @@ export default function MenuMobile({
         <DialogHeader className="flex h-full justify-center my-4">
           <DialogTitle className="hidden">Menu Mobile Header</DialogTitle>
           <header className="flex justify-end mini:justify-between w-full">
-            <h2 className="font-merriweather font-bold hidden mini:block mini:text-base pp:text-2xl text-Seashell-950">
-              barberagender
-            </h2>
+            {user && isUserTrue ? (
+              <div className="flex items-center gap-3">
+                <UserIcon fill="#292929" width={24} height={24} />
+                <h2 className="font-merriweather font-bold hidden mini:block mini:text-base pp:text-2xl text-Seashell-950">
+                  Olá {user?.name.split(" ")[0]}
+                </h2>
+              </div>
+            ) : (
+              <h2 className="font-merriweather font-bold hidden mini:block mini:text-base pp:text-2xl text-Seashell-950">
+                barberagender
+              </h2>
+            )}
+
             <DialogClose className="">
               <Cross2Icon className="h-4 w-4" />
             </DialogClose>
           </header>
+
           <ul className="flex flex-col justify-center flex-1   text-left gap-2 font-poppins pp:text-xl font-medium text-cold-gray-900">
             <li>
               <Link href="/">Home</Link>
@@ -66,7 +78,6 @@ export default function MenuMobile({
               </li>
             )}
           </ul>
-
           <Link href="/agendar-horario">
             <button className="font-poppins text-Copper-800 font-medium border-2 border-Copper-800 rounded  px-1 pp:px-3 py-1 w-full medium:w-full">
               Agendar Horario

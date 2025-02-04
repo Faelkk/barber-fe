@@ -48,7 +48,7 @@ export default async function Header() {
               </Link>
             </li>
             {data && ok ? (
-              <DropdownAccountHeader />
+              <DropdownAccountHeader user={data} />
             ) : (
               <li className="font-poppins text-lg text-Seashell-950">
                 <Link

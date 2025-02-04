@@ -1,3 +1,4 @@
+import { Toaster } from "react-hot-toast";
 import AboutUs from "./components/pages/home/about-us/About-us";
 import Landing from "./components/pages/home/landing/Landing";
 import Services from "./components/pages/home/services/Services";
@@ -14,6 +15,7 @@ export default async function Home() {
       <Unidades />
       <AboutUs />
       <Footer />
+      <Toaster />
     </>
   );
 }

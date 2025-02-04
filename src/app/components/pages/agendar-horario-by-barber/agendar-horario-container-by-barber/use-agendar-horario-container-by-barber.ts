@@ -79,13 +79,20 @@ export function useAgendarHorarioContainerByBarber() {
   }, []);
 
   useEffect(() => {
+    if (user?.role !== "Barber") {
+      router.push("/");
+      toast.error("Você não tem permissão para acessar essa rota");
+    }
+  }, [user, router]);
+
+  useEffect(() => {
     if (user && !error) {
       setState((prevState) => ({
         ...prevState,
         barbershop: user.barbershop as string,
       }));
     }
-  }, [user, error]);
+  }, [user, error, router]);
 
   const handleConfirmSchedule = async () => {
     const { data, ok } = await createAppointmentByBarber(state as FormData);

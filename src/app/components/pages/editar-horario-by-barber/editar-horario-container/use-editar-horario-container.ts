@@ -171,6 +171,13 @@ export function useEditarHorarioContainer() {
     }
   }, [user, error, appointment, shouldSync, isErrorAppointment]);
 
+  useEffect(() => {
+    if (user?.role !== "Barber") {
+      router.push("/");
+      toast.error("Você não tem permissão para acessar essa rota");
+    }
+  }, [user, router]);
+
   const handleConfirmSchedule = async () => {
     const { data, ok } = await editAppointment(
       state as FormData,

@@ -1,20 +1,20 @@
-import Button from "@/app/components/ui/button/Button";
+import { PlusCircledIcon } from "@radix-ui/react-icons";
+import Link from "next/link";
 
 export default function MeusHorarioEmpty({ url }: { url: string }) {
   return (
-    <div className="flex flex-col">
-      <p className="font-poppins text-cold-gray-900 md:text-2xl mt-4">
-        Nenhum horario agendado no momento, que tal agendar um agora mesmo ?
-      </p>
-      <Button
+    <>
+      <Link
+        className="bg-Seashell-50 border-2 border-Copper-300 rounded py-5 px-4 md:px-8 flex items-center justify-center cursor-pointer min-h-[400px] mt-10"
         href={url}
-        borderColor="border-cold-gray-900"
-        textColor="text-cold-gray-900"
-        ariaLabel="Agendar horario de atendimento"
-        className="mt-10 md:max-w-[250px]"
       >
-        Agendar horario
-      </Button>
-    </div>
+        <div className=" flex flex-col gap-4 items-center ">
+          <PlusCircledIcon height={32} width={32} color="#dab06a" />
+          <span className="font-merriweather max-w-[280px] text-center text-Copper-400 font-medium">
+            Clique aqui para marcar um novo agendamento
+          </span>
+        </div>
+      </Link>
+    </>
   );
 }

@@ -9,7 +9,13 @@ export async function middleware(request: NextRequest) {
 
   const isPublicPath = path === "/entrar" || path === "/criar-conta";
 
-  const isPrivatePath = path.startsWith("/meus-horarios");
+  const isPrivatePath = [
+    "/agendar-horario-by-barber",
+    "/meus-horarios",
+    "/agendar-horario",
+  ].some((route) => {
+    return path.startsWith(route);
+  });
 
   if (isPublicPath && authenticated) {
     return NextResponse.redirect(new URL("/", request.url));
@@ -27,7 +33,8 @@ export const config = {
     "/",
     "/entrar",
     "/criar-conta",
-    "/agendar-horario",
+    "/agendar-horario/:path*",
+    "/agendar-horario-by-barber/:path*",
     "/meus-horarios/:path*",
     "/servicos",
     "/unidades/:path*",

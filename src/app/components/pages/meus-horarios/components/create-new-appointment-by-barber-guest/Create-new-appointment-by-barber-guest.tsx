@@ -5,7 +5,7 @@ export default function CreateNewAppointmentBybarberGuest() {
   return (
     <>
       <Link
-        className="bg-Seashell-50 border-2 border-Copper-300 rounded py-5 px-4 md:px-8 flex items-center justify-center cursor-pointer min-h-[300px]"
+        className="bg-Seashell-50 border-2 border-Copper-300 rounded py-5 px-4 md:px-8 flex items-center justify-center cursor-pointer min-h-[400px] "
         href="/agendar-horario-by-barber"
       >
         <div className=" flex flex-col gap-4 items-center ">

@@ -6,14 +6,25 @@ import CreateNewAppointmentBybarberGuest from "../create-new-appointment-by-barb
 export default async function MeusHorariosListBarber({ user }: { user: User }) {
   const { data, error } = await getAppointments(user?._id as string);
 
-  if (error || !data?.length) return <CreateNewAppointmentBybarberGuest />;
+  if (error || !data?.length)
+    return (
+      <div className="mt-10">
+        {" "}
+        <CreateNewAppointmentBybarberGuest />;
+      </div>
+    );
 
   const filteredAppointments = data.filter(
     (horario) => horario.status === "scheduled"
   );
 
   if (!filteredAppointments.length)
-    return <CreateNewAppointmentBybarberGuest />;
+    return (
+      <div className="mt-10">
+        {" "}
+        <CreateNewAppointmentBybarberGuest />;
+      </div>
+    );
 
   return (
     <div className="justify-center grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 mt-10">

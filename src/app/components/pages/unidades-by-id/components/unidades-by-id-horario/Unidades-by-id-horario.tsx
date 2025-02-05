@@ -35,10 +35,9 @@ function formatOperatingHours(
     if (!grouped[time]) {
       grouped[time] = [];
     }
-    grouped[time].push(daysMap[day as WeekDays]); // Garantir que o day seja uma chave válida de WeekDays
+    grouped[time].push(daysMap[day as WeekDays]);
   });
 
-  // Formatar os dias agrupados
   const formatted = Object.entries(grouped)
     .map(([time, days]) => {
       const dayRange =

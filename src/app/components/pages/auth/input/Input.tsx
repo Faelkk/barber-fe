@@ -6,7 +6,6 @@ interface InputProps extends ComponentProps<"input"> {
   error?: string;
 }
 
-// Corrigido o uso do `forwardRef` e adequação do tipo do componente.
 const Input = forwardRef<HTMLInputElement, InputProps>(function Input(
   { placeholder, className, disabled, id, name, error, ...props },
   ref

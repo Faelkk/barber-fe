@@ -2,11 +2,12 @@ import Button from "@/app/components/ui/button/Button";
 import ServicesList from "./Services-list";
 import getServices from "@/actions/services/get-global-services";
 import { cn } from "@/functions/cn";
+import ServicesEmpty from "./Services-empty";
 
 export default async function Services() {
   const { data: services, error, ok } = await getServices();
 
-  if (error) return <h2>Um erro ocorreu.</h2>;
+  if (error || !services) return <ServicesEmpty />;
 
   if (services && ok)
     return (

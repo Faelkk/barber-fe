@@ -3,9 +3,12 @@ import getBarberShopById from "@/actions/barbershop/get-barbershop-by-id";
 import Container from "@/app/components/ui/container/Container";
 import Image from "next/image";
 import Link from "next/link";
+import LandingEmpty from "./LandingEmpty";
 
 export default async function Landing() {
   const { data, error, ok } = await getBarberShopById();
+
+  if (!data || error) return <LandingEmpty />;
 
   if (data && !error && ok)
     return (

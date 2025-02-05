@@ -7,12 +7,23 @@ export interface BarberShop {
   _id: string;
   name: string;
   description: string;
-  duration: number;
-  price: number;
-  barbershop: string;
-  type: "global";
   avatar: string;
   thumbnail: string;
+  appointments: string[];
+  socialLinks: {
+    facebook?: string;
+    instagram?: string;
+    threads?: string;
+    twitter?: string;
+    linkedin?: string;
+    youtube?: string;
+    tiktok?: string;
+  };
+  auth: string[];
+  globalService: string[];
+  unit: string[];
+  phoneNumber: string;
+  email: string;
 }
 
 export default async function getBarberShopById() {

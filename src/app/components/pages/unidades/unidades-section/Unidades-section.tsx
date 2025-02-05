@@ -16,13 +16,6 @@ export default function UnidadesSection({ units }: { units: Unit[] | null }) {
         handleSearchChange={handleSearchChange}
       />
       <UnidadesList searchQuery={searchQuery} units={units} />
-      <button
-        onClick={() => {
-          throw new Error("Simulação de erro Landing");
-        }}
-      >
-        Teste erro
-      </button>
 
       <Button
         href="/agendar-horario"

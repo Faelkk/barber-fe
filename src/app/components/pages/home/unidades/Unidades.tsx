@@ -16,17 +16,9 @@ export default function Unidades() {
           Encontre a unidade mais próxima de você
         </h2>
         <p className="font-poppins text-lg text-cold-gray-900 text-center max-w-[750px] mt-5">
-          Atualmente, possuímos mais de 500 unidades espalhadas pelo Brasil em 8
+          Atualmente, possuímos mais de 30 unidades espalhadas pelo Brasil em 8
           estados brasileiros: SP, RJ, SC, PR, RS, MG, MS, BA.
         </p>
-
-        <button
-          onClick={() => {
-            throw new Error("Simulação de erro Landing");
-          }}
-        >
-          Teste erro
-        </button>
 
         <Button
           href="/unidades"

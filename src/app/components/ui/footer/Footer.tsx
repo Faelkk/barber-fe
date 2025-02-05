@@ -4,8 +4,12 @@ import InstagramIcon from "../icons/Instagram";
 import LinkedinIcon from "../icons/Linkedin";
 import TiktokIcon from "../icons/Tiktok";
 import YoutubeIcon from "../icons/Youtube";
+import getBarberShopById from "@/actions/barbershop/get-barbershop-by-id";
+import { formatPhoneNumber } from "@/functions/format-phone-number";
 
-export default function Footer() {
+export default async function Footer() {
+  const { data } = await getBarberShopById();
+
   return (
     <footer className="mt-[200px] bg-Seashell-50">
       <section className="grid grid-cols-1 medium:grid-cols-2 lg:grid-cols-[3fr_5fr_4fr] gap-10 pt-15 pb-15 box-border max-w-[1200px] px-5 mx-auto py-[60px]">
@@ -17,9 +21,9 @@ export default function Footer() {
             Contato
           </h2>
           <ul className="font-poppins font-medium text-cold-gray-700 mini:text-lg flex flex-col gap-4 mt-5">
-            <li className="">+51 9999-99999</li>
+            <li className="">{formatPhoneNumber(data?.phoneNumber || "")}</li>
             <li className="relative after:content-[''] after:block after:w-full after:max-w-[360px] after:h-[2px] after:bg-gray-300 after:mt-4">
-              Contato-barber@gmail.com
+              {data?.email}
             </li>
             <li className="">Rua Logo Ali, 79 - Breve</li>
             <li className="relative after:content-[''] after:block after:w-full after:max-w-[360px] after:h-[2px] after:bg-gray-300 after:mt-4">
@@ -27,11 +31,22 @@ export default function Footer() {
             </li>
           </ul>
           <div className="flex gap-4 mt-5">
-            <FacebookIcon fill="#3D3D3D" width={24} height={24} />
-            <InstagramIcon fill="#3D3D3D" width={24} height={24} />
-            <LinkedinIcon fill="#3D3D3D" width={24} height={24} />
-            <TiktokIcon fill="#3D3D3D" width={24} height={24} />
-            <YoutubeIcon fill="#3D3D3D" width={24} height={24} />
+            <Link href={data?.socialLinks.facebook ?? "#"}>
+              <FacebookIcon fill="#3D3D3D" width={24} height={24} />
+            </Link>
+            <Link href={data?.socialLinks.instagram ?? "#"}>
+              <InstagramIcon fill="#3D3D3D" width={24} height={24} />
+            </Link>
+            <Link href={data?.socialLinks.linkedin ?? "#"}>
+              <LinkedinIcon fill="#3D3D3D" width={24} height={24} />
+            </Link>
+            <Link href={data?.socialLinks.tiktok ?? "#"}>
+              <TiktokIcon fill="#3D3D3D" width={24} height={24} />
+            </Link>
+
+            <Link href={data?.socialLinks.youtube ?? "#"}>
+              <YoutubeIcon fill="#3D3D3D" width={24} height={24} />
+            </Link>
           </div>
         </section>
         <section>

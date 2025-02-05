@@ -11,6 +11,7 @@ import Loading from "@/app/loading";
 import getServices, {
   GlobalService,
 } from "@/actions/services/get-global-services";
+import UnidadesByIdEmpty from "../components/unidades-by-id-empty/Unidades-by-id-empty";
 
 export default function UnidadesByIdSection() {
   const { unidadeId } = useParams() as { unidadeId: string | undefined };
@@ -29,12 +30,13 @@ export default function UnidadesByIdSection() {
         if (ok && !error) {
           setBarbearia(data);
           setError(false);
+          setIsLoading(false);
         } else {
           setError(true);
+          setIsLoading(false);
         }
       } catch {
         setError(true);
-      } finally {
         setIsLoading(false);
       }
     };
@@ -50,14 +52,15 @@ export default function UnidadesByIdSection() {
         setServicesLoading(true);
         const { data, error, ok } = await getServices();
         if (ok && !error) {
+          setServicesLoading(false);
           setServices(data);
           setServicesError(false);
         } else {
           setServicesError(true);
+          setServicesLoading(false);
         }
       } catch {
         setServicesError(true);
-      } finally {
         setServicesLoading(false);
       }
     };
@@ -67,8 +70,9 @@ export default function UnidadesByIdSection() {
     }
   }, [unidadeId]);
 
+  if (error || servicesError) return <UnidadesByIdEmpty />;
+
   if (loading || servicesLoading) return <Loading />;
-  if (error || servicesError) return <h2>Um erro ocorreu.</h2>;
 
   if (barbearia && !error && services)
     return (

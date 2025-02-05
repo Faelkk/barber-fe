@@ -2,7 +2,6 @@
 
 import { UNITS_BY_ID_GET } from "@/functions/api";
 import apiError from "@/functions/api-error";
-import { cookies } from "next/headers";
 import { GlobalService } from "../services/get-global-services";
 
 export interface OperatingHours {
@@ -55,17 +54,10 @@ export default async function getUnitById(unidadeId: string | undefined) {
   try {
     if (!unidadeId) throw new Error("UnidadeId not found.");
 
-    const token = (await cookies()).get("token")?.value;
-
-    const headers = new Headers();
-    headers.append("Authorization", "Bearer " + token);
-
     const { url } = UNITS_BY_ID_GET(unidadeId);
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+
       next: {
         revalidate: 60,
       },

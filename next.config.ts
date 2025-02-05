@@ -1,7 +1,6 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  domains: ["tjkcssowevhrffvicjwr.supabase.co"], // Add the domain here
   images: {
     remotePatterns: [
       {

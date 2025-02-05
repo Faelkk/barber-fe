@@ -1,6 +1,8 @@
+"use client";
+
 import Button from "@/app/components/ui/button/Button";
 
-export default async function Unidades() {
+export default function Unidades() {
   return (
     <section
       aria-labelledby="unidades-heading"
@@ -17,6 +19,14 @@ export default async function Unidades() {
           Atualmente, possuímos mais de 500 unidades espalhadas pelo Brasil em 8
           estados brasileiros: SP, RJ, SC, PR, RS, MG, MS, BA.
         </p>
+
+        <button
+          onClick={() => {
+            throw new Error("Simulação de erro Landing");
+          }}
+        >
+          Teste erro
+        </button>
 
         <Button
           href="/unidades"

@@ -2,7 +2,6 @@
 
 import { UNITS_GET } from "@/functions/api";
 import apiError from "@/functions/api-error";
-import { cookies } from "next/headers";
 import { Auth } from "./get-unit-by-id";
 
 export interface Unit {
@@ -48,17 +47,10 @@ export interface LocalService {
 
 export default async function getUnits() {
   try {
-    const token = (await cookies()).get("token")?.value;
-
-    const headers = new Headers();
-    headers.append("Authorization", "Bearer " + token);
-
     const { url } = UNITS_GET();
     const response = await fetch(url, {
       method: "GET",
-      headers: {
-        Authorization: "Bearer " + token,
-      },
+
       next: {
         revalidate: 60,
       },
